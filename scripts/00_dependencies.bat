@@ -18,5 +18,5 @@ call sf package install -p "04tP3000001bWRlIAM" -w 30 --target-org "lightweighta
 call sf org assign permset --name "Lightweight_Record_Tree" --target-org "lightweightagentforcerecordbuilder"
 
 REM Install Package - Lightweight - Agentforce Record Builder (0.3)
-call sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "EricDemo"
-call sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "lightweightagentforcerecordbuilder"
+rem call sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "lightweightagentforcerecordbuilder"
+rem call sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "lightweightagentforcerecordbuilder"

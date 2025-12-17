@@ -46,14 +46,35 @@ The following packages need to be installed before installing the main package i
 |Last updated date|Dec 09, 2025||
 |Managed Package | <ul><li> `sf package install --wait 30 --security-type AllUsers --package 04tP3000001bWRlIAM`</li><li>`/packaging/installPackage.apexp?p0=04tP3000001bWRlIAM`</li></ul> | [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tP3000001bWRlIAM) | [Install in Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?mgd=true&p0=04tP3000001bWRlIAM)|
 
+## Salesforce CLI - Install Script
+You can install the dependencies using this batch script as well (Windows Command Prompt Version, but update accordingly)
+```batch
+REM !! ASSIGN THIS ONE BEFORE INSTALLING DEPENDENCIES !!
+call sf org assign permset --name "EinsteinGPTPromptTemplateManager" --target-org "lightweightagentforcerecordbuilder"
+
+REM Install Package - Lightweight - Apex Unit Test Util v2 (2.7)
+call sf package install -p "04tP3000001adwjIAA" -w 30 --target-org "lightweightagentforcerecordbuilder"
+call sf org assign permset --name "Lightweight_Apex_Unit_Test_Util_v2" --target-org "lightweightagentforcerecordbuilder"
+
+REM Install Package - Lightweight - Apex Trigger Util (0.1)
+call sf package install -p "04tP3000001bUo9IAE" -w 30 --target-org "lightweightagentforcerecordbuilder"
+call sf org assign permset --name "Lightweight_Apex_Trigger_Util" --target-org "lightweightagentforcerecordbuilder"
+
+REM Install Package - Lightweight - Record Tree (0.1)
+call sf package install -p "04tP3000001bWRlIAM" -w 30 --target-org "lightweightagentforcerecordbuilder"
+call sf org assign permset --name "Lightweight_Record_Tree" --target-org "lightweightagentforcerecordbuilder"
+
+REM Install Package - Lightweight - Agentforce Record Builder (0.3)
+call sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "lightweightagentforcerecordbuilder"
+call sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "lightweightagentforcerecordbuilder"
+```
+
 ## Post Install
 **Assign Permission Sets**
 
 You need to assign the the `Lightweight - Agentforce Record Builder - Admin` permission set to the admin users in order to use the application. 
 The user who installs the package automatically added during the post install script.
-```
 `sf org assign permset --name Lightweight_Agentforce_Record_Builder_Admin`
-```
 
 ## Load Sample Data (Optional)
 Optionally you can load the `Test Data Generator` as a good example to get you started to play around. Not you will require Accounts, Contacts and Cases to be availible in your org.
