@@ -12,7 +12,7 @@ SET definitionFile=config/project-package-def.json
 
 REM Package Config
 SET packageId=0HoP300000001lhKAA
-SET packageVersionId=04tP3000001cNXhIAM
+SET packageVersionId=04tP3000001cPZVIA2
 
 REM Create package
 sf package create --name "%packageName%" --description "%packageDescription%" --package-type "%packageType%" --path "%packagePath%" --target-dev-hub %devHub%

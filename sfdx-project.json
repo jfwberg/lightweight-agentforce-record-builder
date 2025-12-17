@@ -2,7 +2,7 @@
   "packageDirectories": [
     {
       "versionName": "v65.0 - 01",
-      "versionNumber": "0.3.0.NEXT",
+      "versionNumber": "0.4.0.NEXT",
       "path": "force-app/package",
       "default": true,
       "package": "Lightweight - Agentforce Record Builder",
@@ -45,6 +45,7 @@
     "Lightweight - Agentforce Record Builder@0.2.0-5": "04tP3000001cHQfIAM",
     "Lightweight - Agentforce Record Builder@0.2.0-6": "04tP3000001cIY1IAM",
     "Lightweight - Agentforce Record Builder@0.2.0-7": "04tP3000001cIZdIAM",
-    "Lightweight - Agentforce Record Builder@0.3.0-1": "04tP3000001cNXhIAM"
+    "Lightweight - Agentforce Record Builder@0.3.0-1": "04tP3000001cNXhIAM",
+    "Lightweight - Agentforce Record Builder@0.4.0-1": "04tP3000001cPZVIA2"
   }
 }

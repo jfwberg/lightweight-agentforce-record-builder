@@ -1,8 +1,13 @@
-REM sf config set target-dev-hub=defaultDevHub
+REM Set the wanted dev-hub
+call sf config set target-dev-hub="defaultDevHub"
 
-REM sf org generate password --target-org lightweightagentforcerecordbuilder
+REM Create a scratch org
+call sf org create scratch --definition-file config/project-scratch-def.json --duration-days 7 --alias "lightweightagentforcerecordbuilder" --set-default --no-namespace
 
-REM Assign permission sets to the running user
+REM Generate the password for the scratch org
+call sf org generate password --target-org "lightweightagentforcerecordbuilder"
+
+REM Assign permission sets to the running user, this is required for deploying the prompt templates
 call sf org assign permset --name "EinsteinGPTPromptTemplateManager" --target-org "lightweightagentforcerecordbuilder"
 
 REM Install Package - Lightweight - Apex Unit Test Util v2 (2.7)
@@ -18,5 +23,5 @@ call sf package install -p "04tP3000001bWRlIAM" -w 30 --target-org "lightweighta
 call sf org assign permset --name "Lightweight_Record_Tree" --target-org "lightweightagentforcerecordbuilder"
 
 REM Install Package - Lightweight - Agentforce Record Builder (0.3)
-rem call sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "lightweightagentforcerecordbuilder"
-rem call sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "lightweightagentforcerecordbuilder"
+call sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "lightweightagentforcerecordbuilder"
+call sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "lightweightagentforcerecordbuilder"
