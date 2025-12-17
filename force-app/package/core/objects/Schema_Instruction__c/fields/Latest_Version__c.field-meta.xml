@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Latest_Version__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>The latest version of the instructions</inlineHelpText>
+    <label>Latest Version</label>
+    <referenceTo>Schema_Instruction_Version__c</referenceTo>
+    <relationshipLabel>Schema Instructions</relationshipLabel>
+    <relationshipName>Schema_Instructions</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<template>
+	<lightning-modal-header label="Manage Fields"></lightning-modal-header>
+	<lightning-modal-body>
+		
+        <template if:true={fields}>
+            <c-field-update-inputs
+             fields={fields}
+             onpurposechange={handlePurposeChange}
+            ></c-field-update-inputs>
+        </template>
+
+	</lightning-modal-body>
+    
+	<lightning-modal-footer>
+        <lightning-button label="Save"	onclick={handleClickSave} variant="brand"></lightning-button>
+		<lightning-button label="Close"	onclick={handleClose}></lightning-button>
+	</lightning-modal-footer>
+</template>

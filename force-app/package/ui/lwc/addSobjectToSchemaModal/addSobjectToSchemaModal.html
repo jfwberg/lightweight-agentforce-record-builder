@@ -1,0 +1,14 @@
+<template>
+	<lightning-spinner alternative-text="Loading" size="large" if:true={loading}></lightning-spinner>
+
+	<template if:true={loaded}>
+		<lightning-modal-header label="Add sObject &amp; and Fields to the Schema Mapping"></lightning-modal-header>
+		<lightning-modal-body>
+			<c-s-object-selector onvaluechanged={handleValueChanged}></c-s-object-selector>
+		</lightning-modal-body>
+		<lightning-modal-footer>
+			<lightning-button label="Add To Schema Mapping"	onclick={handleClickAdd} variant="brand"></lightning-button>
+			<lightning-button label="Close"	onclick={handleClose}></lightning-button>
+		</lightning-modal-footer>
+	</template>
+</template>

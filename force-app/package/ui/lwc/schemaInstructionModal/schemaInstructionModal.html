@@ -1,0 +1,27 @@
+<template>
+	<lightning-spinner alternative-text="Loading" size="large" if:true={loading}></lightning-spinner>
+
+	<template if:true={loaded}>
+		<lightning-modal-header label={headerText}></lightning-modal-header>
+		<lightning-modal-body>
+            
+			<div lwc:if={viewMode}>
+				<c-markdown-viewer markdown-text={instructions}></c-markdown-viewer>
+			</div>
+
+			<lightning-textarea
+				lwc:if={editMode}
+                label="Schema Instructions"
+                value={instructions}
+                class="ta"
+				onchange={handleInstructionsValueChanged}
+            ></lightning-textarea>
+
+
+		</lightning-modal-body>
+		<lightning-modal-footer>
+			<lightning-button label="Save As New Version" onclick={handleClickSave} variant="brand" lwc:if={editMode}></lightning-button>
+			<lightning-button label="Close"	onclick={handleClose}></lightning-button>
+		</lightning-modal-footer>
+	</template>
+</template>

@@ -1,0 +1,11 @@
+.console-pre {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    white-space: pre;
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+    /*background: #f3f3f3;*/
+    color: #080808;
+    border-radius: 0.25rem;
+    overflow: auto;
+    max-height: 60vh;
+}

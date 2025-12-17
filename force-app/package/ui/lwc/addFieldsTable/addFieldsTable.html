@@ -1,0 +1,12 @@
+<template>
+    <lightning-datatable 
+        key-field               = "name"
+        data                    = {rows}
+        columns                 = {columns}
+        selected-rows           = {selectedRowKeys}
+        onrowselection          = {handleRowSelection}
+        hide-checkbox-column    = {hideCheckboxColumn}
+        max-row-selection       = {maxRowSelection}
+        show-row-number-column
+    ></lightning-datatable>
+</template>

@@ -1,0 +1,47 @@
+<template>
+    <div class="field-update-container">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-text-title_caps" scope="col">Name</th>
+                    <th class="slds-text-title_caps" scope="col">Purpose Description</th>
+                    <th class="slds-text-title_caps" scope="col">Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <template for:each={_fields} for:item="field">
+                    <tr key={field.id} class="slds-hint-parent">
+                        <!-- Display-only name -->
+                        <td data-label="Name">
+                            {field.name}
+                        </td>
+
+                        <!-- Editable purpose description -->
+                        <td data-label="Purpose Description">
+                            <lightning-textarea
+                                variant="label-hidden"
+                                label={field.name}
+                                value={field.purposeDescription}
+                                data-id={field.id}
+                                onchange={handlePurposeChange}>
+                            </lightning-textarea>
+                        </td>
+
+                        <!-- Delete action -->
+                        <td class="slds-cell-shrink" data-label="Delete">
+                            <lightning-button-icon
+                                icon-name="utility:close"
+                                alternative-text="Delete"
+                                title="Delete"
+                                variant="bare"
+                                data-id={field.id}
+                                onclick={handleDeleteField}>
+                            </lightning-button-icon>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

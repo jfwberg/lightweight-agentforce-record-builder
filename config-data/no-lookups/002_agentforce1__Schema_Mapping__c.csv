@@ -1,0 +1,2 @@
+"Name","agentforce1__External_Id__c","agentforce1__Ignore_Triggers__c","agentforce1__Order__c","agentforce1__Hierarchy_Changed__c","agentforce1__Schema_Changed__c","agentforce1__Instruction__c","agentforce1__Purpose_Description__c","agentforce1__Schema_Instruction__r.agentforce1__External_Id__c"
+"Test Data Generator","c30b8095-4fb0-4b3b-bd6d-63b8c36c7111","false","1.0","false","false","","Creating Themed Salesforce Test Data based on the prompt input values. This can be both ""plain data"" or files.","506be2ee-3a93-48a8-8e98-23a3e787ede1"

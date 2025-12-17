@@ -1,0 +1,14 @@
+<template>
+	
+	<lightning-spinner alternative-text="Loading" size="large" if:true={loading}></lightning-spinner>
+	
+	<template if:true={loaded}>
+		<lightning-modal-header label={label}></lightning-modal-header>
+		<lightning-modal-body style="padding: 0px !important;">
+			<c-markdown-viewer markdown-text={promptOutput}></c-markdown-viewer>
+		</lightning-modal-body>
+		<lightning-modal-footer>
+			<lightning-button label="Close"	onclick={handleClose}></lightning-button>
+		</lightning-modal-footer>
+	</template>
+</template>

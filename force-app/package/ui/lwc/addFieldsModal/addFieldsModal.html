@@ -1,0 +1,20 @@
+<template>
+	<lightning-modal-header label="Add Fields"></lightning-modal-header>
+	<lightning-modal-body>
+		
+        <template if:true={fields}>
+            
+            <c-add-fields-table 
+				fields			  = {fields}
+				onselectionchange = {handleSelectionChange}
+			></c-add-fields-table>
+
+        </template>
+
+	</lightning-modal-body>
+    
+	<lightning-modal-footer>
+        <lightning-button label="Save"	onclick={handleClickSave} variant="brand"></lightning-button>
+		<lightning-button label="Close"	onclick={handleClose}></lightning-button>
+	</lightning-modal-footer>
+</template>

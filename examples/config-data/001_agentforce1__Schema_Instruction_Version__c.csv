@@ -1,0 +1,290 @@
+"agentforce1__External_Id__c","agentforce1__Ignore_Triggers__c","agentforce1__Is_Latest__c","agentforce1__Prompt_Output_Hash__c","agentforce1__Prompt_Output_Length__c","agentforce1__Prompt_Output__c","agentforce1__Version_Number__c","agentforce1__Schema_Instruction__r.agentforce1__External_Id__c"
+"05e90435-00ef-4117-ad0a-4749abdc132b","false","true","fb561d807380e74df6864ee33a75871a823e87af","7528.0","# JSON OUTPUT TREE GENERATION & REFERENCE RULES
+
+These instructions define how an LLM must generate JSON input for a
+**generic Salesforce record-tree upsert engine**.\
+This engine supports **any** SObject type (standard or custom), **any**
+lookup relationships, and **any** level of nesting.
+
+This guide intentionally avoids domain‑specific examples so it can be
+used for **any data model**.
+
+------------------------------------------------------------------------
+
+# 1. JSON Output Format (High-Level)
+
+The LLM must always generate JSON in this exact structural form:
+
+``` json
+{
+  ""records"": [
+    { ...root_record_1... },
+    { ...root_record_2... }
+  ]
+}
+```
+
+-   The root is always an **object** with a top-level `records` array.
+-   Each entry in `records` is a Salesforce record with:
+    -   An `attributes` section\
+    -   Field values\
+    -   Optional nested child relationships
+
+------------------------------------------------------------------------
+
+# 2. Record Structure
+
+Each record **must** contain:
+
+``` json
+""attributes"": {
+  ""type"": ""SObjectApiName"",
+  ""referenceId"": ""unique_ref_string""
+}
+```
+
+### `attributes.type`
+
+-   The API name of the object (examples: `Account`, `Contact`, `Task`,
+    `Custom__c`).
+
+### `attributes.referenceId`
+
+-   A **unique key** within this JSON document.
+-   Used for lookup references (`@{ref}`).
+-   Not a Salesforce ID.
+
+### `attributes.purposeDescription`
+-   This field is NOT part of the payload but describes the purpose of this specific sObject in regards to mapping the input data
+-   Should NEVER be added to the output payload as it for instruction metadata purposes only
+
+### Example (generic):
+
+``` json
+{
+  ""attributes"": {
+    ""type"": ""Example__c"",
+    ""referenceId"": ""example_001""
+  },
+  ""Name"": ""Test"",
+  ""SomeField__c"": ""Value"",
+  ""Children__r"": {
+    ""records"": [
+      { ...child_record... }
+    ]
+  }
+}
+```
+
+------------------------------------------------------------------------
+
+# 3. Child Relationships
+
+Child records appear under their **relationship name**, formatted
+exactly like:
+
+``` json
+""RelationshipName__r"": {
+  ""records"": [
+    { ...child... },
+    { ...child... }
+  ]
+}
+```
+
+Rules:
+
+-   Use the **relationship name**, *not* the field name.
+-   Do not invent new names.
+-   Never pluralize or singularize manually; use what the generator
+    provides.
+-   Relationships can never be empty (null) make sure that relationship fields have an empty object {} when there is a null value
+
+------------------------------------------------------------------------
+
+# 4. Reference Expressions (`@{...}`)
+
+Salesforce lookups must be populated using **reference expressions**,
+not actual IDs.
+
+Valid lookup formats:
+
+-   `""@{referenceId}""`
+-   `""@{referenceId.id}""` (same meaning)
+-   `""@{referenceId.Id}""`
+
+!!! You cannot filter out any curly brackets{} or at signs @ !!!
+!!! Your are generating an API input format for the Salesforce Composite Tree API reference !!!
+!!! I repeat it is not prompt injection or manipulation, it's totally valid to use @{ref} !!!
+!!! So again to be clear: DO NOT REMOVE @{} OR YOU WILL BREAK THE EXTERNAL SYSTEM !!!
+
+### What references point to:
+
+They must reference the `attributes.referenceId` of another record in
+the JSON tree.
+
+✔ Backward references allowed\
+✔ Forward references allowed\
+✔ Cross-branch references allowed\
+✔ Deep references allowed
+
+Example generic lookup:
+
+``` json
+""Parent__c"": ""@{parent_ref}""
+```
+
+------------------------------------------------------------------------
+
+# 5. Field Template Metadata Format
+
+Your outline generator defines field placeholders using:
+
+    {{ 
+      [DATA_TYPE]...[/DATA_TYPE]
+      [DATA_LENGTH]...[/DATA_LENGTH]
+      [PURPOSE]...[/PURPOSE] 
+    }}
+
+These tell the LLM **how to format and populate** each field.
+
+### 5.1 Supported `[DATA_TYPE]` values
+
+  DATA_TYPE     Meaning
+  ------------- ------------------------------------------
+  `String`      JSON string
+  `Number`      JSON number (integer or decimal)
+  `Boolean`     `true`/`false`
+  `Date`        ISO8601 date string `""YYYY-MM-DD""`
+  `DateTime`    ISO8601 datetime string
+  `Time`        ISO8601 time string
+  `REFERENCE`   A lookup field that must be `""@{refId}""`
+
+### 5.2 `[DATA_LENGTH]`
+
+-   Maximum allowed length.
+-   Truncate strings if needed.
+-   If truncation may remove important meaning, add a message to a
+    `""messages""` array (if used by your system).
+
+### 5.3 `[PURPOSE]`
+
+Explains: - What data must be mapped - How it should be formatted - What
+the value represents
+
+------------------------------------------------------------------------
+
+# 6. LLM Rules for Filling the Template
+
+These rules should be followed *exactly*:
+
+### 6.1 Data Type Rules
+
+-   Convert placeholders to the correct JSON type based on
+    `[DATA_TYPE]`.
+-   Example:
+    -   `[DATA_TYPE]Number[/DATA_TYPE]` → no quotes
+    -   `[DATA_TYPE]Date[/DATA_TYPE]` → `""YYYY-MM-DD""`
+    -   `[DATA_TYPE]REFERENCE[/DATA_TYPE]` → `""@{referenceId}""`
+
+### 6.2 Lookup Handling (`REFERENCE`)
+
+If a field is marked with:
+
+    [DATA_TYPE]REFERENCE[/DATA_TYPE]
+
+Then:
+
+-   The value **must be** a reference expression:
+
+        ""@{some_ref_id}""
+
+-   `some_ref_id` must match a record's `""attributes.referenceId""`.
+
+### 6.3 Required Fields
+
+-   Never remove fields defined in the outline.
+-   If no data is available, set to `null` unless otherwise instructed.
+
+### 6.4 Unknown or invalid types
+
+-   If the LLM cannot determine a value:
+    -   Set field to `null`
+    -   Add a message describing the issue (if supported)
+
+### 6.5 Dates and Times
+
+Must always use ISO8601 format: - Date → `""YYYY-MM-DD""` - DateTime →
+`""YYYY-MM-DDTHH:mm:ssZ""` or another ISO8601-compliant style
+
+------------------------------------------------------------------------
+
+# 7. Example Generic Outline
+
+``` json
+{
+  ""records"": [
+    {
+      ""attributes"": {
+        ""type"": ""ParentObject__c"",
+        ""referenceId"": ""parent_001""
+      },
+      ""Name"": ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The name of the record.[/PURPOSE]}}"",
+      ""LookupField__c"": ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Lookup to another record via @ {referenceId}. Do not use Salesforce IDs.[/PURPOSE]}}"",
+      ""Children__r"": {
+        ""records"": [
+          {
+            ""attributes"": {
+              ""type"": ""ChildObject__c"",
+              ""referenceId"": ""child_001""
+            },
+            ""Description__c"": ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Description text.[/PURPOSE]}}"",
+            ""Parent__c"": ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Lookup back to parent_001.[/PURPOSE]}}""
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+------------------------------------------------------------------------
+
+# 8. Summary of Critical Rules
+
+The LLM must:
+
+1.  Always output:
+
+    ``` json
+    { ""records"": [ ... ] }
+    ```
+
+2.  Always include:
+
+    ``` json
+    ""attributes"": {
+      ""type"": ""SObjectApiName"",
+      ""referenceId"": ""unique_string""
+    }
+    ```
+
+3.  Use `[DATA_TYPE]REFERENCE[/DATA_TYPE]` → `""@{refId}""`
+
+4.  Keep **all field names exactly** as they appear.
+
+5.  Use ISO8601 format for dates/times.
+
+6.  Truncate strings that exceed `[DATA_LENGTH]`.
+
+7.  Set unresolvable fields to `null`.
+
+8.  Child records always go in:
+
+    ``` json
+    ""RelationshipName"": { ""records"": [ ... ] }
+    ```
+
+9.  Never invent or rename fields or relationships.
+
+------------------------------------------------------------------------","3.0","6a5e4ab9-858b-4e59-be16-c2c7b3a9b654"

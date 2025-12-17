@@ -1,0 +1,35 @@
+<template>
+    <lightning-card icon-name="standard:action_list_component">
+		<lightning-button-group slot="actions">
+
+			<lightning-button
+				variant			 = "neutral"
+				icon-name		 = "utility:prompt"
+				icon-position	 = "left"
+				label            = "View Instruction"
+				title			 = "View Instruction Version"
+				onclick		  	 = {handleClickOpenViewSchemaInstructionModal}
+			></lightning-button>
+
+			<lightning-button
+				variant			 = "neutral"
+				icon-name		 = "utility:prompt_edit"
+				icon-position	 = "left"
+				label            = "Edit Instruction"
+				title			 = "Edit Instruction Version"
+				onclick		  	 = {handleClickOpenEditSchemaInstructionModal}
+			></lightning-button>
+
+			<lightning-button
+				lwc:if			 = {isDefault}
+				variant			 = "neutral"
+				icon-name		 = "utility:undo"
+				icon-position	 = "left"
+				label            = "Reset"
+				title			 = "Reset Instruction to default"
+				onclick		  	 = {handleClickReset}
+			></lightning-button>
+
+		</lightning-button-group>
+	</lightning-card>
+</template>

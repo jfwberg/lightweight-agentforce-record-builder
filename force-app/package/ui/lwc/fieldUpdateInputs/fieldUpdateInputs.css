@@ -1,0 +1,18 @@
+.field-update-container {
+    margin: 1rem 0;
+}
+
+.field-label {
+    font-weight: bold;
+}
+
+.field-input {
+    width: 100%;
+}
+
+.field-value-display {
+    padding: 0.5rem;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}

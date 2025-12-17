@@ -1,0 +1,50 @@
+{
+  "packageDirectories": [
+    {
+      "versionName": "v65.0 - 01",
+      "versionNumber": "0.3.0.NEXT",
+      "path": "force-app/package",
+      "default": true,
+      "package": "Lightweight - Agentforce Record Builder",
+      "versionDescription": "A Lightweight utility to convert any Agentforce Prompt Template Output into structured Salesforce sObject records.",
+      "ancestorVersion": "HIGHEST",
+      "definitionFile": "config/project-scratch-def.json",
+      "packageMetadataAccess": {
+        "permissionSets": [
+          "EinsteinGPTPromptTemplateManager"
+        ]
+      },
+      "postInstallScript": "PostInstallHandler",
+      "dependencies": [
+        {
+          "package": "Lightweight - Apex Unit Test Util v2@2.7.0-1"
+        },
+        {
+          "package": "Lightweight - Apex Trigger Util@0.1.0-3"
+        },
+        {
+          "package": "Lightweight - Record Tree@0.1.0-1"
+        }
+      ]
+    }
+  ],
+  "name": "lightweight-agentforce-record-builder",
+  "namespace": "agentforce1",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "65.0",
+  "packageAliases": {
+    "Lightweight - Apex Unit Test Util v2@2.7.0-1": "04tP3000001adwjIAA",
+    "Lightweight - Apex Trigger Util@0.1.0-3": "04tP3000001bUo9IAE",
+    "Lightweight - Record Tree@0.1.0-1": "04tP3000001bWRlIAM",
+    "Lightweight - Agentforce Record Builder": "0HoP300000001lhKAA",
+    "Lightweight - Agentforce Record Builder@0.1.0-1": "04tP3000001cG1ZIAU",
+    "Lightweight - Agentforce Record Builder@0.2.0-1": "04tP3000001cGzFIAU",
+    "Lightweight - Agentforce Record Builder@0.2.0-2": "04tP3000001cH0rIAE",
+    "Lightweight - Agentforce Record Builder@0.2.0-3": "04tP3000001cHIbIAM",
+    "Lightweight - Agentforce Record Builder@0.2.0-4": "04tP3000001cHNRIA2",
+    "Lightweight - Agentforce Record Builder@0.2.0-5": "04tP3000001cHQfIAM",
+    "Lightweight - Agentforce Record Builder@0.2.0-6": "04tP3000001cIY1IAM",
+    "Lightweight - Agentforce Record Builder@0.2.0-7": "04tP3000001cIZdIAM",
+    "Lightweight - Agentforce Record Builder@0.3.0-1": "04tP3000001cNXhIAM"
+  }
+}

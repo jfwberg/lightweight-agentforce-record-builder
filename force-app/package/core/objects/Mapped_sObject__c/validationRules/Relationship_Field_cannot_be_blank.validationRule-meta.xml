@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relationship_Field_cannot_be_blank</fullName>
+    <active>false</active>
+    <description>The relationship field cannot be blank if the the Parent sObject has a value</description>
+    <errorConditionFormula>AND(
+  NOT(ISBLANK(Parent_sObject__c)),
+  ISBLANK(Relationship_Field__c )
+)</errorConditionFormula>
+    <errorDisplayField>Relationship_Name__c</errorDisplayField>
+    <errorMessage>The (Parent) Relationship Name cannot be empty when a parent sObject is populated.</errorMessage>
+</ValidationRule>

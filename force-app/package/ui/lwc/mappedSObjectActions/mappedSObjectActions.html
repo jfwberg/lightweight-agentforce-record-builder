@@ -1,0 +1,34 @@
+<template>
+    <lightning-card icon-name="standard:action_list_component">
+		<lightning-button-group slot="actions">
+			
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:standard_objects" 
+				icon-position	 = "left"
+				label            = "Add Child sObject"	
+				title			 = "Add Child sObject"	
+				onclick		  	 = {handleClickOpenAddChildSObjectModal}
+			></lightning-button>
+
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:form" 
+				icon-position	 = "left"
+				label            = "Add Fields"	
+				title			 = "Add Fields"	
+				onclick		  	 = {handleClickOpenAddFieldsModal}
+			></lightning-button>
+
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:freeze_column" 
+				icon-position	 = "left"
+				label            = "Field Purpose Descriptions"	
+				title			 = "Manage Fields"	
+				onclick		  	 = {handleClickOpenManageFieldsModal}
+			></lightning-button>
+
+		</lightning-button-group>
+	</lightning-card>
+</template>

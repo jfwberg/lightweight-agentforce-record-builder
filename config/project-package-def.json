@@ -1,0 +1,24 @@
+{
+  "orgName": "Lightweight - Agentforce Record Builder",
+  "edition": "Developer",
+  "language": "en_US",
+  "country": "GB",
+  "features": [
+    "EnableSetPasswordInApi",
+    "Einstein1AIPlatform"
+  ],
+  "packageMetadataAccess": {
+    "permissionSets": ["EinsteinGPTPromptTemplateManager"]
+  },
+  "settings": {
+    "einsteinGptSettings": {
+      "enableEinsteinGptPlatform": true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "records" : [ {
+    "utl__Child_Test_sObjects__r" : {
+      "records" : [ {
+        "utl__External_Id__c" : "Test Child",
+        "Name" : "Test Child - flow",
+        "attributes" : {
+          "referenceId" : "child",
+          "type" : "utl__Child_Test_sObject__c"
+        }
+      } ]
+    },
+    "utl__Parent_Test_sObject__r" : {
+      "records" : [ {
+        "utl__Child_Test_sObjects__r" : {
+          "records" : [ {
+            "utl__Url__c" : "https://child.example.org/flow",
+            "utl__Time__c" : "08:15:00.000Z",
+            "utl__Text_Area__c" : "Child text area. flow",
+            "utl__Text__c" : "Child text value - flow",
+            "utl__Rich_Text_Area__c" : "<i>Rich text child</i>",
+            "utl__Picklist__c" : "ChildOption",
+            "utl__Phone__c" : "555-123-4567",
+            "utl__Percent__c" : "55.55",
+            "utl__Number__c" : 123,
+            "utl__Multi_Picklist__c" : "X;Y",
+            "utl__Long_Text_Area__c" : "Child long text\nmultiline.",
+            "utl__Encrypted__c" : "ChildEncryptedValue!@#flow",
+            "utl__Email__c" : "child+flow@example.org",
+            "utl__Decimal__c" : "1234.56",
+            "utl__Date_Time__c" : "2030-01-01T12:00:00Z",
+            "utl__Date__c" : "2030-01-01",
+            "utl__Currency__c" : "999.99",
+            "utl__Checkbox__c" : "true",
+            "utl__External_Id__c" : "Test Child Parent Child",
+            "Name" : "Test Child Parent Child - flow",
+            "attributes" : {
+              "referenceId" : "childParentChild",
+              "type" : "utl__Child_Test_sObject__c"
+            }
+          } ]
+        },
+        "utl__External_Id__c" : "Test Child Parent",
+        "Name" : "Test Child Parent - flow",
+        "attributes" : {
+          "referenceId" : "childParent",
+          "type" : "utl__Parent_Test_sObject__c"
+        }
+      } ]
+    },
+    "utl__Self_Lookup__c" : "@{selfLookup}",
+    "utl__Primary_Child_Test_sObject__c" : "@{child}",
+    "utl__External_Id__c" : "Test Parent",
+    "Name" : "Test Parent - flow",
+    "attributes" : {
+      "referenceId" : "parent",
+      "type" : "utl__Parent_Test_sObject__c"
+    }
+  }, {
+    "utl__External_Id__c" : "Test Self Lookup Top Level",
+    "Name" : "Test Self Lookup Top Level - flow",
+    "attributes" : {
+      "referenceId" : "selfLookup",
+      "type" : "utl__Parent_Test_sObject__c"
+    }
+  }, {
+    "utl__Url__c" : "https://example.com/page?ts=flow",
+    "utl__Time__c" : "15:45:30.000Z",
+    "utl__Text_Area__c" : "Short multi-line\ntext area",
+    "utl__Text__c" : "Sample text flow",
+    "utl__Rich_Text_Area__c" : "<p><b>Bold text</b> and normal text.</p>",
+    "utl__Picklist__c" : "OptionA",
+    "utl__Phone__c" : "+44 20 7946 0958",
+    "utl__Percent__c" : "12.50",
+    "utl__Number__c" : 42,
+    "utl__Multi_Picklist__c" : "A;B;C",
+    "utl__Long_Text_Area__c" : "This is a long text area.\nMultiple lines.\nCovers long text.",
+    "utl__Encrypted__c" : "SecretValue123!flow",
+    "utl__Email__c" : "test+flow@example.com",
+    "utl__Decimal__c" : "9876.54",
+    "utl__Date_Time__c" : "2025-03-12T15:30:00Z",
+    "utl__Date__c" : "2025-03-12",
+    "utl__Currency__c" : "123.45",
+    "utl__Checkbox__c" : true,
+    "utl__Primary_Child_Test_sObject__c" : "@{child.Id}",
+    "utl__Self_Lookup__c" : "@{selfLookup.id}",
+    "utl__External_Id__c" : "ID Syntax Parent",
+    "Name" : "ID Syntax Parent - flow",
+    "attributes" : {
+      "referenceId" : "idSyntaxParent",
+      "type" : "utl__Parent_Test_sObject__c"
+    }
+  }, {
+    "utl__Child_Test_sObjects__r" : {
+      "records" : [ {
+        "utl__External_Id__c" : "MultiRef Child 1",
+        "Name" : "MultiRef Child 1 - flow",
+        "attributes" : {
+          "referenceId" : "multiRefChild1",
+          "type" : "utl__Child_Test_sObject__c"
+        }
+      }, {
+        "utl__External_Id__c" : "MultiRef Child 2",
+        "Name" : "MultiRef Child 2 - flow",
+        "attributes" : {
+          "referenceId" : "multiRefChild2",
+          "type" : "utl__Child_Test_sObject__c"
+        }
+      } ]
+    },
+    "utl__Primary_Child_Test_sObject__c" : "@{child}",
+    "utl__Self_Lookup__c" : "@{selfLookup}",
+    "utl__External_Id__c" : "Multi Ref Parent",
+    "Name" : "Multi Ref Parent - flow",
+    "attributes" : {
+      "referenceId" : "multiRefParent",
+      "type" : "utl__Parent_Test_sObject__c"
+    }
+  }, {
+    "utl__Primary_Child_Test_sObject__c" : "@{child}",
+    "utl__Self_Lookup__c" : "@{laterParent}",
+    "utl__External_Id__c" : "Forward to Later Parent",
+    "Name" : "Forward to Later Parent - flow",
+    "attributes" : {
+      "referenceId" : "forwardToLaterParent",
+      "type" : "utl__Parent_Test_sObject__c"
+    }
+  }, {
+    "utl__External_Id__c" : "Later Parent",
+    "Name" : "Later Parent - flow",
+    "attributes" : {
+      "referenceId" : "laterParent",
+      "type" : "utl__Parent_Test_sObject__c"
+    }
+  } ]
+}

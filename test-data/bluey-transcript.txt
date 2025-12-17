@@ -1,0 +1,54 @@
+Customer (Chilli Heeler):
+Hi there, I’m hoping you can help. We recently ordered a “Magic Xylophone Playset” for Bluey and Bingo, but when it arrived the sound doesn’t work properly. It only makes a buzzing noise.
+
+Agent (Customer Support – Jo):
+Hi Chilli! Thanks for reaching out. Sorry to hear the playset isn’t working. I can definitely help you with that. Just to confirm — was this ordered through our online store?
+
+Customer (Chilli):
+Yes, ordered online last week. Bandit did the checkout late at night… long story. But the kids were really excited, and now it’s just making weird robot sounds.
+
+Customer (Bandit Heeler):
+Yep — I probably clicked the wrong shipping option too. But the main issue is the sound. Bingo thinks the xylophone is “possessed.”
+
+Agent (Jo):
+Understood! Thanks for confirming. That definitely sounds like a defective sound module. We can replace it or issue a refund — whichever you'd prefer.
+
+Customer (Chilli):
+A replacement would be ideal. The kids love Bluey episodes with the Magic Xylophone, so they’ve been pretending to freeze each other anyway. A working one would avoid a lot of “Bingo statues.”
+
+Customer (Bandit):
+Yeah… I’ve been “frozen” six times today.
+
+Agent (Jo):
+Haha, understood. I’ll get the replacement started. Before I do, may I ask — did you happen to see our new Heeler Family Backyard Adventure Pack? It includes the trampoline, the fairy garden, and the BBQ accessories. A lot of families pair it with the Magic Xylophone set.
+
+Customer (Chilli):
+Oh that actually sounds interesting. What’s the price?
+
+Agent (Jo):
+It’s currently $49.99 and includes free shipping when bundled with any replacement or new order.
+
+Customer (Bandit):
+That’s tempting… The kids love anything that lets them recreate episodes. Can you send us more info?
+
+Agent (Jo):
+Absolutely! I’ll email you the details, photos, and bundle pricing. No pressure — just giving you the option.
+
+Customer (Chilli):
+Thanks! For now, let’s proceed with the replacement for the Magic Xylophone.
+
+Agent (Jo):
+Done — I’ve started the request. You’ll receive a confirmation email shortly.
+Before we wrap up: would you like me to set a reminder for tomorrow in case you want to review the Backyard Adventure Pack details?
+
+Customer (Bandit):
+Yes please — I’ll forget otherwise.
+
+Agent (Jo):
+Great — I’ll schedule a follow-up task and send the info today. Is there anything else I can help with?
+
+Customer (Chilli):
+Nope, that’s everything. Thank you!
+
+Agent (Jo):
+My pleasure! Have a great day with Bluey and Bingo — hope the replacement brings back the magic!

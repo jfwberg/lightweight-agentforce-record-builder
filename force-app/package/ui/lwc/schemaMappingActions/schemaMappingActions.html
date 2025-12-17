@@ -1,0 +1,50 @@
+<template>
+    <lightning-card icon-name="standard:invocable_action">
+		<lightning-button-group slot="actions" >
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:standard_objects"
+				icon-position	 = "left"
+				label            = "Add sObject"
+				title			 = "Add sObject To Schema"	
+				onclick		  	 = {handleClickAddSObjectToSchema}
+			></lightning-button>
+
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:hierarchy"
+				icon-position	 = "left"
+				label            = "Update Hierarchy"
+				title			 = "Update sObject Hierarchy"	
+				onclick		  	 = {handleClickOpenUpdateSObjectHierarchyModal}
+			></lightning-button>
+
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:prompt_edit"
+				icon-position	 = "left"
+				label            = "New Version"
+				title			 = "Create New Version"	
+				onclick		  	 = {handleClickCreateNewSchemaVersion}
+			></lightning-button>
+
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:prompt_builder"
+				icon-position	 = "left"
+				label            = "Show Prompt"
+				title			 = "Show Prompt Output"	
+				onclick		  	 = {handleClickShowActiveSchemaPromptOutput}
+			></lightning-button>
+
+			<lightning-button 
+				variant			 = "neutral"
+				icon-name		 = "utility:flow"
+				icon-position	 = "left"
+				label            = "Run Test"
+				title			 = "Test Schema"	
+				onclick		  	 = {handleClickOpenTestSchemaModal}
+			></lightning-button>
+		</lightning-button-group>
+	</lightning-card>
+</template>

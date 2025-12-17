@@ -1,0 +1,518 @@
+"agentforce1__External_Id__c","agentforce1__Ignore_Triggers__c","agentforce1__Is_Latest__c","agentforce1__Prompt_Output_Hash__c","agentforce1__Prompt_Output_Length__c","agentforce1__Prompt_Output__c","agentforce1__Version_Number__c","agentforce1__Schema_Mapping__r.agentforce1__External_Id__c"
+"d4d82bd3-01d6-4e7f-9623-35764040981f","false","true","d40a24bce1bec17759cc3175077f6d83a18e5600","9050.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Extracting Account / Contact / Task information from the input data in order to create the Salesforce sObject records.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""Contacts"" : {
+      ""records"" : [ {
+        ""Tasks"" : {
+          ""records"" : [ {
+            ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup relationship that looks up to the appropriate account.[/PURPOSE]}}"",
+            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a few lines of what should done in the task[/PURPOSE]}}"",
+            ""Type"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Call, Meeting or Other are the only valid values. If you have any doubts, always make this call[/PURPOSE]}}"",
+            ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The subject of the task. This is a short text[/PURPOSE]}}"",
+            ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The date/time that this task or action takes place[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""Any tasks related to this specific account go in this object. Basically any contact request, like calls etc"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Task""
+            }
+          } ]
+        },
+        ""Email"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]Email address, create something random, but make sure that it ends in .example[/PURPOSE]}}"",
+        ""Birthdate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The date this person was born (make sure this is between 18 and 50 years old)[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of the contact. Tell in a few lines something interesting about this person and tell a little about them[/PURPOSE]}}"",
+        ""LastName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The last name of the contact[/PURPOSE]}}"",
+        ""FirstName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The first name of the contact[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""Contact level details (actual human) for the contact related to the account."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Contact""
+        }
+      } ]
+    },
+    ""Cases"" : {
+      ""records"" : [ {
+        ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]A subject in a few words that fits the theme and matches the description field[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of the case. You can make this a few lines or even a single line that fits in with the test data theme.[/PURPOSE]}}"",
+        ""ContactId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Relate this field to the appropriate contact record.[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : null,
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Case""
+        }
+      } ]
+    },
+    ""ChildAccounts"" : {
+      ""records"" : [ {
+        ""Contacts"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup relationship that looks up to the appropriate account.[/PURPOSE]}}"",
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : null,
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""LastName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""FirstName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""Email"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""Birthdate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""Contact level details (actual human) for the contact related to the account."",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Contact""
+            }
+          } ]
+        },
+        ""Cases"" : {
+          ""records"" : [ {
+            ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]A subject in a few words that fits the theme and matches the description field[/PURPOSE]}}"",
+            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of the case. You can make this a few lines or even a single line that fits in with the test data theme.[/PURPOSE]}}"",
+            ""ContactId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Relate this field to the appropriate contact record.[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : null,
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Case""
+            }
+          } ]
+        },
+        ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the child account[/PURPOSE]}}"",
+        ""ShippingStreet"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The street of the child account address[/PURPOSE]}}"",
+        ""ShippingState"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The state of the child account address[/PURPOSE]}}"",
+        ""ShippingPostalCode"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]20[/DATA_LENGTH][PURPOSE]The post code part of the child account address[/PURPOSE]}}"",
+        ""ShippingCountry"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The country part of the child account address[/PURPOSE]}}"",
+        ""ShippingCity"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The city part of the child account address[/PURPOSE]}}"",
+        ""AccountNumber"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]An account number. You can make this up. Don't make it too complex and make sure if you have multiple accounts they make sense.[/PURPOSE]}}"",
+        ""NumberOfEmployees"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The number of employees that work for this child account[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This Object contains information about the account at the account level"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Account""
+        }
+      } ]
+    },
+    ""NumberOfEmployees"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The number of employees that work for this account[/PURPOSE]}}"",
+    ""ShippingPostalCode"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]20[/DATA_LENGTH][PURPOSE]The post code of the account address[/PURPOSE]}}"",
+    ""ShippingState"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The state of the account address[/PURPOSE]}}"",
+    ""AccountNumber"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]An account number. You can make this up. Don't make it too complex and make sure if you have multiple accounts they make sense.[/PURPOSE]}}"",
+    ""ShippingCountry"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The country part of the shipping address[/PURPOSE]}}"",
+    ""ShippingCity"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The city of the account address[/PURPOSE]}}"",
+    ""ShippingStreet"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The street of the account address[/PURPOSE]}}"",
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the account (not the name of the contact)[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""This Object contains information about the account at the account level"",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Account""
+    }
+  } ]
+}","3.0","09f052f2-8399-4a33-9eed-4f14e279e790"
+"14dd6b5b-874c-4fa8-b88c-23c9a9828982","false","true","bda904637c5c6c1912fdf12042cfd263bc55ff05","2279.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Analyse call transcript to extract potential opportunities, cases based on complaints, request or compliments as well as creating follow up tasks.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""Cases"" : {
+      ""records"" : [ {
+        ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The subject for the case[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short case description[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""If the customer has any request or complaint, create a new case. There can be more than one case"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Case""
+        }
+      } ]
+    },
+    ""Tasks"" : {
+      ""records"" : [ {
+        ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]A short subject what the task is about[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A description of the task, add enough detail but dont go overboard[/PURPOSE]}}"",
+        ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The date / time the action takes place[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""If the call contains any actions that have a clear date (can be an actual date or something like, next week, in three weeks etc) create an actionable task."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Task""
+        }
+      } ]
+    },
+    ""Id"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Map this to the input account Id, this is an 18 character salesforce id that will be specified in the prompt[/PURPOSE]}}"",
+    ""agentforce1__External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Extract the account number that is provided by the customer and put that number in this field. An example account number looks like:\r\nACC-00000000[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : null,
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Account""
+    }
+  } ]
+}","3.0","8ecec2da-c22e-4d20-9602-1f15d42b6e9c"
+"293a85e4-397d-4d29-b798-c79d7ee4dde4","false","true","b6512c8bef43089a36096c07733b643fe95a2896","531.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Analyse customer uploaded photos of electricity infrastructure damage caused by storms or accidents to create work orders.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""Id"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The Contact Id that logged the call[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""The person that logged the call"",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Contact""
+    }
+  } ]
+}","1.0","bd2dfad5-9758-4dfb-8921-562a2b054d4c"
+"64706c12-0ab5-4b83-809b-880f11648c0a","false","true","f032b1214a6491765c0cfdb67f784cb9993b7770","8452.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Extracting a business process from a flowchart into a data structure containing a process object and a process step object that are linked together.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""ContentDocumentLinks"" : {
+      ""records"" : [ {
+        ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Populate this field with the Content Document File Id from the input file of the prompt template. This is the Salesforce Id and not a refId.[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""test"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""ContentDocumentLink""
+        }
+      } ]
+    },
+    ""agentforce1__Steps__r"" : {
+      ""records"" : [ {
+        ""agentforce1__Outcomes1__r"" : {
+          ""records"" : [ {
+            ""agentforce1__Next_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The is the lookup reference to the next step in the process. Populate this field with the matching refId of the next step[/PURPOSE]}}"",
+            ""agentforce1__Process__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup field to the parent Process__c record. Apply the refId accordingly[/PURPOSE]}}"",
+            ""agentforce1__Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup to the parent step record. Populate with the parent refId[/PURPOSE]}}"",
+            ""agentforce1__Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the parent step formatted like \""SP_xxxx\"" to link this outcome to a step[/PURPOSE]}}"",
+            ""agentforce1__Next_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]the Id of the next step, required for decision. This is formatted like PS_xxxx[/PURPOSE]}}"",
+            ""agentforce1__Process_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Id of the parent process. Formatted like 'PROC_xxxx' this field is to match it all up the \""ultimate\"" parent so to speak[/PURPOSE]}}"",
+            ""agentforce1__Condition__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The value of the condition, required for decision.[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""This list of outcomes is added as a child of the process steps when the type is decision. When a decision is made there are multiple outcomes. Outcomes."",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""agentforce1__Outcome__c""
+            }
+          } ]
+        },
+        ""agentforce1__Next_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The is the lookup reference to the next step in the process. Populate this field with the matching refId of the next step[/PURPOSE]}}"",
+        ""agentforce1__Next_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Field containing the Id of the next action, only applies when the type field is \""Process\"". There is no next step when the type is \""End\"" or \""Decision\""[/PURPOSE]}}"",
+        ""agentforce1__Actor__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]If you can find any logical actor, the actor value goes in here[/PURPOSE]}}"",
+        ""agentforce1__Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The unique id of this step formatted like 'PS_xxxx' use padding with zeroes for the number that is represented by the 4x[/PURPOSE]}}"",
+        ""agentforce1__Actor_Role__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The role of the actor if you can find it, Human, Agent, System etc. Be consistent and don't overcomplicate it[/PURPOSE]}}"",
+        ""agentforce1__Process_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Unique Process Id of the parent formattted like 'PROC_xxxx' or if there is a clear process Id in the flow use that one. Match it to the parent value.[/PURPOSE]}}"",
+        ""agentforce1__Action__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The action value and or action description, whatever is availible / makes sense. It will usually be the name.[/PURPOSE]}}"",
+        ""agentforce1__Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Valid values are \""Process\"", \""Decision\"" or \""End\"" depending on the type of process[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This object contains all information relating a step in a business process. There are different types of steps: Start, Process, Decision and End."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""agentforce1__Step__c""
+        }
+      } ]
+    },
+    ""agentforce1__Start_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This field is a reference field that is the lookup to first step in the analysed process. This is where the process starts.[/PURPOSE]}}"",
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The name of the process. If there is a clear title use this tile. If not make up a title based on the file name and or what makes sense from the entire context of the process.[/PURPOSE]}}"",
+    ""agentforce1__AI_Model__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The AI Model Used to extract the process. This is a system field and will be specified. Ignore this for the process extraction as it is not relevant.[/PURPOSE]}}"",
+    ""agentforce1__Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Unique Process Id. If on the process you can find a clear process Id populate that here. If you cannot find any specific process Id format the process like 'PROC_xxxx' and for each process up the number. Pad the value with zeroes on the left.[/PURPOSE]}}"",
+    ""agentforce1__Version__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]{If you can find a version, apply the version else default the version to 1.0}[/PURPOSE]}}"",
+    ""agentforce1__Start_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The (external) Id that is generated for the start step. This creates the link based on the external id and is not an id in the technical sense.[/PURPOSE]}}"",
+    ""agentforce1__Notes__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]100000[/DATA_LENGTH][PURPOSE]A list of notes where you can put feedback or any errors. It could be that the flow chart is invalid, missing items, infinity loops etc. If you run into these issues put them in here.[/PURPOSE]}}"",
+    ""agentforce1__Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]A short description of the process[/PURPOSE]}}"",
+    ""agentforce1__Summary__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]100000[/DATA_LENGTH][PURPOSE]A summary of the process in a few lines used to find the process by users through AI search. So make this contain the items a user would search for to find the process easily[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""This objects contains all the generic metadata related a business process. Things like the name, version etc."",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""agentforce1__Process__c""
+    }
+  }, {
+    ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This is a lookup to the process. Populate this with the process RefId accordingly[/PURPOSE]}}"",
+    ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Fill this value with: Review Process Task + The name of the process[/PURPOSE]}}"",
+    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The task should be a process review task. Put a note in here to review the newly extracted process[/PURPOSE]}}"",
+    ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Create the data one week from now[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : null,
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Task""
+    }
+  } ]
+}","12.0","406bf323-fbcf-4f1f-8438-1a98de7d0b37"
+"32f9289c-74db-4f96-8f94-1e503af71eea","false","true","74b142b63481b433ec685abf9073e457a325add2","3579.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Analyse a shopping list and extract allergy information, price information and other receipt information.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""ContentDocumentLinks"" : {
+      ""records"" : [ {
+        ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A link this to the uploaded file that contains the receipt.[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""To create a link to the input file"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""ContentDocumentLink""
+        }
+      } ]
+    },
+    ""agentforce1__Allergy_Analyses__r"" : {
+      ""records"" : [ {
+        ""agentforce1__Reason_for_confidence_score__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32768[/DATA_LENGTH][PURPOSE]Give a detailed reason on why you gave the product confidence score[/PURPOSE]}}"",
+        ""agentforce1__Price__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Put the price in here. Prices areformatted like xx.xx. Two decimals[/PURPOSE]}}"",
+        ""agentforce1__Estimated_Amount_Of_Calories__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Give an estimated number of calories in a normal portion of this product. Don't waste too much time on this though. It has not to be very accurate[/PURPOSE]}}"",
+        ""agentforce1__Confidence_Score__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Give a confidence score on how confident you are about this product containing any allergens[/PURPOSE]}}"",
+        ""agentforce1__Allergies__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Any (potential) allergies are listed in here split by a comma[/PURPOSE]}}"",
+        ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The name of the product[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This object contains one or more records with allergy information about the product."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""agentforce1__Allergy_Analysis__c""
+        }
+      } ]
+    },
+    ""agentforce1__Payment_Method__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]If you can find a payment method like the card type or cash or digital you can add that free text in here. Leave blank if the payment type is not obvious[/PURPOSE]}}"",
+    ""agentforce1__Timestamp__c"" : ""{{[DATA_TYPE]Datetime[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The date/time of the receipt[/PURPOSE]}}"",
+    ""agentforce1__VAT__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Put the VAT Amount here[/PURPOSE]}}"",
+    ""agentforce1__Total__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Put the total amount here[/PURPOSE]}}"",
+    ""agentforce1__Shop_Name__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Put he name of the shop in here (if you can find it )[/PURPOSE]}}"",
+    ""agentforce1__Recipe_Idea__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32768[/DATA_LENGTH][PURPOSE]Based on the items on the shopping list, create me a nice but not to difficult recipe[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""This object contains the outline of the shopping list. It has the details like the total, the date etc."",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""agentforce1__Shopping_List__c""
+    }
+  } ]
+}","5.0","5ee26446-f8ec-4bdc-a6dd-a1119f987414"
+"1074271b-48ce-49fe-a8e8-df379ad17405","false","true","d1b9037fcdf88e371568ccc544a27e40176640e7","1808.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Analyse incoming emails related to a case to see if they are actually spam emails. We give them a likely Score and reason on what to check for as well as a status.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""agentforce1__spam_analyses__r"" : {
+      ""records"" : [ {
+        ""agentforce1__Status__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]9 or 10 --> \""Passed\""\n6 or 7 or 8 --> \""Check Required\""\n5 or lower --> \""Failed\""\nUse these exact values[/PURPOSE]}}"",
+        ""agentforce1__Spam_Probability_Score__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Give a spam probability score between 1 and 10. Where 10 is most likely to be spam and 1 is not likely at all[/PURPOSE]}}"",
+        ""agentforce1__Reason_for_score__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32768[/DATA_LENGTH][PURPOSE]Put your reasoning in here on why you gave the score for the spam analysis[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This object contains results from scanning incoming emails on their likely hood for being spam emails.\r\nMultiple email can be received in the same input data. Create one of these records for each spam email."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""agentforce1__Spam_Analysis__c""
+        }
+      } ]
+    },
+    ""Id"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The Case Id, this is the input from the prompt template.[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""The parent case where related emails are going to be checked and scored on their spam probability"",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Case""
+    }
+  } ]
+}","10.0","2ca7b407-82da-4a6c-8f20-0827b872a4fb"
+"52e032d1-d4bc-4801-8be2-731ed24536f1","false","true","0da41121afed20c55096a7c8c56dfc99d860aa85","5670.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+This mapping is used to create some basic (themed or professional looking) test data based on the generated schema mapping.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""Contacts"" : {
+      ""records"" : [ {
+        ""Opportunities"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a realistic subject[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a real-life or plausible description[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this one week from today[/PURPOSE]}}"",
+                ""WhoId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Link this to the contact[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Relate this to the parent account[/PURPOSE]}}"",
+            ""StageName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Set as \""New\""[/PURPOSE]}}"",
+            ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]120[/DATA_LENGTH][PURPOSE]Give if a suitable, yet believable name[/PURPOSE]}}"",
+            ""CloseDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Generate a close date between 1 day or 100 days in the future[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Opportunity""
+            }
+          } ]
+        },
+        ""Cases"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Map this to the parent Account record[/PURPOSE]}}"",
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a proper subject[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a functional description[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this to 2 weeks from now[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The case subject[/PURPOSE]}}"",
+            ""Status"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The status. Set this to New if you're unsure[/PURPOSE]}}"",
+            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of what the request is[/PURPOSE]}}"",
+            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A reference to the parent account. Populate with the @{refId}[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Case""
+            }
+          } ]
+        },
+        ""LastName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The last name[/PURPOSE]}}"",
+        ""FirstName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The first name[/PURPOSE]}}"",
+        ""Email"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The email address. Always add .example at the end as this is  a test[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Short description about this person[/PURPOSE]}}"",
+        ""Birthdate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The birthdate, make sure this is not any lower than 02/02/1900. If its lower make this the default date[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""test"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Contact""
+        }
+      } ]
+    },
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the account[/PURPOSE]}}"",
+    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The description of the account, in a few lines what they do[/PURPOSE]}}"",
+    ""BillingStreet"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The billing street.[/PURPOSE]}}"",
+    ""BillingCountry"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The billing country.[/PURPOSE]}}"",
+    ""BillingCity"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The billing city.[/PURPOSE]}}"",
+    ""AnnualRevenue"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The revenue the company makes. Make sure this does not exceed 100 million.[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : null,
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Account""
+    }
+  } ]
+}","7.0","50e7954c-3a4c-4874-9879-f449ea922439"
+"c12478f2-172c-4a6f-9e9d-6ad46c6d47c9","false","true","fd3d5af73bcddce4145052f366cef4f33869f925","8989.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+This is an implementation to test the Agentforce Record Builder data structure as an actual mapping. This creates a perfect test case that is org agnostic. It's a bit complex to comprehend when all put together because it tests itself on itself.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+{
+  ""records"" : [ {
+    ""agentforce1__Schema_Mappings__r"" : {
+      ""records"" : [ {
+        ""agentforce1__Schema_Versions__r"" : {
+          ""records"" : [ {
+            ""attributes"" : {
+              ""purposeDescription"" : ""The object that contains different versions of the version mapping"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""agentforce1__Schema_Mapping_Version__c""
+            }
+          } ]
+        },
+        ""agentforce1__Mapped_sObjects__r"" : {
+          ""records"" : [ {
+            ""agentforce1__Mapped_Fields__r"" : {
+              ""records"" : [ {
+                ""agentforce1__Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Purpose_Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]1000[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Mapped_sObject__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Length__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__JSON_Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Ignore_Triggers__c"" : ""{{[DATA_TYPE]Boolean[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""agentforce1__Mapped_sObject_Field__c""
+                }
+              } ]
+            },
+            ""agentforce1__Child_sObjects__r"" : {
+              ""records"" : [ {
+                ""agentforce1__Mapped_Fields__r"" : {
+                  ""records"" : [ {
+                    ""agentforce1__Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""agentforce1__Purpose_Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]1000[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""agentforce1__Mapped_sObject__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""agentforce1__Length__c"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""agentforce1__JSON_Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""agentforce1__Ignore_Triggers__c"" : ""{{[DATA_TYPE]Boolean[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""agentforce1__External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                    ""attributes"" : {
+                      ""purposeDescription"" : ""test"",
+                      ""referenceId"" : ""[Replace with the referenceId]"",
+                      ""type"" : ""agentforce1__Mapped_sObject_Field__c""
+                    }
+                  } ]
+                },
+                ""agentforce1__sObjectType__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Schema_Mapping__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Relationship_Name__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Relationship_Field__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Purpose_Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]1000[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Parent_sObject__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Parent_sObjectType__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Order__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__Ignore_Triggers__c"" : ""{{[DATA_TYPE]Boolean[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""agentforce1__External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""agentforce1__Mapped_sObject__c""
+                }
+              } ]
+            },
+            ""agentforce1__sObjectType__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Schema_Mapping__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Relationship_Name__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Relationship_Field__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Purpose_Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]1000[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Parent_sObject__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Parent_sObjectType__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Order__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__Ignore_Triggers__c"" : ""{{[DATA_TYPE]Boolean[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""agentforce1__External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]null[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""agentforce1__Mapped_sObject__c""
+            }
+          } ]
+        },
+        ""agentforce1__Latest_Version__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup to the latest version of the schema mapping[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""The main sObject that stores the mapping"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""agentforce1__Schema_Mapping__c""
+        }
+      } ]
+    },
+    ""agentforce1__Schema_Instruction_Versions__r"" : {
+      ""records"" : [ {
+        ""attributes"" : {
+          ""purposeDescription"" : ""The Object holds the different versions of Schema Instructions."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""agentforce1__Schema_Instruction_Version__c""
+        }
+      } ]
+    },
+    ""agentforce1__Is_Default__c"" : ""{{[DATA_TYPE]Boolean[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this value to TRUE[/PURPOSE]}}"",
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]Set this value to \""Default\"", no other value is allowed.[/PURPOSE]}}"",
+    ""agentforce1__Latest_Version__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup to the Schema_Instruction_Version__c object that is a child of this Scheme instruction.\nThis creates the link to the latest version, so we know what record to pickup.[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""This sObject contains a schema instruction. This is the first required object."",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""agentforce1__Schema_Instruction__c""
+    }
+  } ]
+}","3.0","28ac5d7e-6877-4f7b-80f3-43017110a9e8"

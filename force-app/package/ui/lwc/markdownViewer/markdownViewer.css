@@ -1,0 +1,138 @@
+/* Minimal, clean, SLDS-friendly markdown styling */
+:host {
+  display: block;
+}
+
+.md {
+  background: var(--lwc-colorBackgroundAlt, #ffffff);
+  border-radius: 0.25rem;
+}
+
+.md-content {
+  color: var(--lwc-colorTextDefault, #080707);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Headings */
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+  color: var(--lwc-colorTextDefault, #080707);
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.md-content h1 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--lwc-colorBorder, #dddbda);
+  padding-bottom: 0.5rem;
+}
+.md-content h2 {
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--lwc-colorBorder, #dddbda);
+  padding-bottom: 0.25rem;
+}
+.md-content h3 { font-size: 1.125rem; }
+
+/* Paragraphs and spacing */
+.md-content p {
+  margin: 0.5rem 0 1rem;
+}
+
+/* Horizontal rule */
+.md-content hr {
+  border: 0;
+  border-top: 1px solid var(--lwc-colorBorder, #dddbda);
+  margin: 1rem 0;
+}
+
+/* Lists */
+.md-content ul,
+.md-content ol {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+}
+.md-content li {
+  margin: 0.25rem 0;
+}
+
+/* Blockquotes */
+.md-content blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 4px solid var(--lwc-colorBrand, #1b96ff);
+  background: var(--lwc-colorBackgroundRowHover, #f3f2f2);
+  color: var(--lwc-colorTextDefault, #080707);
+}
+
+/* Code */
+.md-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: #f5f7f9;
+  border: 1px solid #e1e5ea;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.2rem;
+  font-size: 0.85em;
+}
+.md-content pre.md-codeblock {
+  background: #0b1b28;
+  color: #e6edf3;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  overflow: auto;
+  border: 1px solid #0f2a3d;
+  margin: 0.75rem 0 1rem;
+}
+/* JSON syntax highlighting inside code blocks */
+.md-content pre.md-codeblock code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: 0.85rem;
+}
+.md-content .md-json-key { color: #79c0ff; }       /* light blue for keys */
+.md-content .md-json-string { color: #a5d6a7; }    /* greenish for strings */
+.md-content .md-json-number { color: #f2cc60; }    /* yellow for numbers */
+.md-content .md-json-boolean { color: #ffab70; }   /* orange for booleans */
+.md-content .md-json-null { color: #ffa7c4; }      /* pink for null */
+
+/* Links */
+.md-content a {
+  color: var(--lwc-colorBrand, #1b96ff);
+  text-decoration: underline;
+}
+
+/* Tables */
+.md-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 1rem;
+  background: var(--lwc-colorBackgroundAlt, #ffffff);
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.md-content thead th {
+  background: var(--lwc-colorBackgroundAltInverse, #eaf5ff); /* softer Salesforce-like blue */
+  color: var(--lwc-colorBrand, #0176d3);                     /* Salesforce brand blue for text */
+  font-weight: 600;
+}
+.md-content th,
+.md-content td {
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+.md-content tbody tr:nth-child(odd) td {
+  background: var(--lwc-colorBackgroundRowHover, #f7f7f7);
+}
+.md-content th {
+  text-align: left;
+}
+
+/* Ensure lone wrapper requirement: we style inside .md-content only */

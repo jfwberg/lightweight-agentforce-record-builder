@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hierarchy_Changed__c</fullName>
+    <defaultValue>true</defaultValue>
+    <inlineHelpText>When mapped objects are added / removed the hierarchy requires an update</inlineHelpText>
+    <label>Hierarchy Changed?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,109 @@
+<template>
+
+  
+    <div class="slds-form">
+        <fieldset class="slds-box">
+            <legend class="fs">01. Search sObject</legend>
+            <div class="slds-form-element slds-m-bottom_small">
+                <lightning-input
+                    label="Search"
+                    type="search"
+                    value={searchKey}
+                    onchange={handleSearchChange}
+                    placeholder="Type to filter objects..."
+                ></lightning-input>
+            </div>
+
+            <div class="slds-form-element slds-m-bottom_x-small">
+                <div class="slds-form-element__control">
+                    <lightning-input
+                        type="checkbox"
+                        checked={showLabel}
+                        onchange={handleToggle}
+                        message-toggle-active="Label"
+                        message-toggle-inactive="API Name"
+                        label="Show Label"
+                    ></lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <lightning-input
+                        type="checkbox"
+                        checked={onlyCustom}
+                        onchange={handleOnlyCustomToggle}
+                        label="Custom sObjects only"
+                    ></lightning-input>
+                </div>
+            </div>
+        </fieldset>
+
+       
+        <fieldset class="slds-box margin-top">
+            <legend class="fs">02. Select sObject</legend>  
+            <div class="slds-form-element slds-m-bottom_small">
+                <div class="slds-form-element__control">
+                    <lightning-combobox
+                        name="sobject-combobox"
+                        label={computedPickerLabel}
+                        data-testid="sobject-combobox"
+                        value={value}
+                        placeholder={placeholder}
+                        options={options}
+                        onchange={handleChange}
+                    ></lightning-combobox>
+                    
+                    <div class="slds-text-body_small slds-m-top_xx-small">
+                        Showing {filteredCount} of {totalCount}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <fieldset class="slds-box margin-top">
+            <legend class="fs">03. Select Lookup Field</legend> 
+                <div class="slds-form-element slds-m-bottom_small">
+                    <div class="slds-form-element__control">
+                        <lightning-combobox
+                            name     ="relationshipField"
+                            label    = {relationshipFieldLabel}
+                            value    = {relationshipFieldValue}
+                            options  = {relationshipFieldOptions}
+                            onchange = {handleRelationshipFieldChange}
+                        ></lightning-combobox>
+                    </div>
+                </div>
+        </fieldset>
+       
+        <fieldset class="slds-box margin-top">
+            <legend class="fs">04. Pupose Description</legend>
+            <div class="slds-form-element slds-m-bottom_small">
+                <lightning-textarea 
+                    label   ="Purpose Description" 
+                    value   ={purposeDescription}
+                    onchange={handleChangePurposeDescription}
+                ></lightning-textarea>
+            </div>
+        </fieldset>
+
+
+        <fieldset class="slds-box margin-top">
+            <legend class="fs">05. Select Fields</legend>
+            <template if:true={relationshipFieldValue}>
+                <div class="slds-m-top_medium">
+                    <lightning-datatable
+                        key-field="apiName"
+                        data={fieldRows}
+                        columns={fieldColumns}
+                        selected-rows={selectedMandatoryRows}
+                        onrowselection={handleRowSelection}
+                        show-row-number-column
+                        suppress-bottom-bar
+                    ></lightning-datatable>
+                </div>
+            </template>
+      </fieldset>
+    </div>
+</template>

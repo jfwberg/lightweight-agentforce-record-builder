@@ -1,0 +1,47 @@
+/* White background to blend with Flow; no borders or cards */
+:host {
+    display: block;
+    height: 100%; /* fill Flow container height */
+    background: #ffffff;
+    color: #1f1f1f;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    line-height: 1.4;
+    font-size: 12px;
+}
+
+/* Use pre for spacing; no extra chrome */
+pre.json {
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    background: #ffffff;
+    white-space: pre-wrap;
+    word-break: break-word;
+    tab-size: 2;
+
+    /* Make the JSON area scroll within the full-height component */
+    max-height: 100%;
+    overflow: auto;
+}
+
+/* Token colors (gentle, readable on white) */
+.json-key {
+    color: #0b5cab; /* Salesforce brand blue-ish for keys */
+    font-weight: 600;
+}
+.json-string {
+    color: #0e7c86; /* teal-ish strings */
+}
+.json-number {
+    color: #a13d2d; /* warm number tone */
+}
+.json-boolean {
+    color: #7a2e90; /* purple for booleans */
+}
+.json-null {
+    color: #7a7a7a; /* gray null */
+    font-style: italic;
+}
+/* Keep punctuation default color to prevent accidental markers via ::before from any global styles */
+.json-punct {
+    color: inherit;
+}

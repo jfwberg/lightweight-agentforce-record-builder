@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>sObject Selector</masterLabel>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__UtilityBar</target>
+        <target>lightning__Tab</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="label" type="String" label="Field Label" />
+            <property name="placeholder" type="String" label="Placeholder" />
+            <property name="value" type="String" label="Selected API Name" />
+            <property name="includeStandard" type="Boolean" label="Include Standard Objects" />
+            <property name="includeCustom" type="Boolean" label="Include Custom Objects" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,65 @@
+## EMAIL 01
+
+Subject: Urgent: Verify Your Bank Account Now or It Will Be Locked
+
+Dear Customer,
+
+We detected unusual activity on your bank account and your online access will be **permanently suspended within 2 hours** unless you verify your identity.
+
+Please click the secure link below and login with your online banking username, password and full card details to restore access:
+
+https://secure-login-bank-check.com-verify-security.io
+
+Failure to complete verification will result in **account closure**.
+
+Sincerely,
+Security Department
+Online Banking Team
+
+Reason for score:
+- Suspicious, non-bank domain name
+- Extreme urgency and threat of closure
+- Requests full credentials and card details
+- Generic greeting (“Dear Customer”) and vague bank identity
+
+
+## EMAIL 02
+
+Subject: Your Monthly Statement for Current Account Ending 4821
+
+Hi Justus,
+
+Your monthly statement for your Current Account ending **4821** is now available in online banking.
+
+You can view it by logging in directly through our official website or mobile app. For your security, we’ll never include login links in emails. If you didn’t expect this email, just sign in as normal at our usual address or contact us using the number on the back of your card.
+
+Best regards,
+Laura Mitchell
+Customer Services
+Northbridge Bank
+
+Reason for score:
+- Specific account reference (last 4 digits only)
+- Encourages user to navigate manually to the known site (no login links)
+- Clear, consistent branding and realistic language
+- No request for personal or card details via email
+
+
+## EMAIL 03
+
+Subject: Card Transaction Confirmation Needed
+
+Hello Justus,
+
+We’ve noticed a recent card transaction of **£214.39** on your account. To help us confirm this activity, please reply to this email with “Yes” if you recognise this transaction or “No” if you don’t.
+
+If you don’t recognise it, a member of our team will contact you to discuss next steps.
+
+Thank you,
+Fraud Monitoring Team
+
+Reason for score:
+- Plausible fraud-check scenario and neutral tone
+- Does not ask for passwords or full card details, only a yes/no reply
+- However, no bank name, no partial card number, and no reference to official contact channels
+- Could be a genuine minimal notification or a well-written spoof — needs a human to verify headers, sender domain and context

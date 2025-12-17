@@ -1,0 +1,9 @@
+<template>
+	<lightning-modal-header label="Mapped sObject Hierarchy"></lightning-modal-header>
+	<lightning-modal-body>
+		<c-update-hierarchy schema-mapping-id={content} class="no-outer-padding" style="margin: 0px !important;"></c-update-hierarchy>
+	</lightning-modal-body>
+	<lightning-modal-footer>
+		<lightning-button label="Close"	onclick={handleClose}></lightning-button>
+	</lightning-modal-footer>
+</template>
