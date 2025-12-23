@@ -30,5 +30,7 @@ REM Promote package version
 sf package:version:promote -p %packageVersionId% --target-dev-hub %devHub% --no-prompt
 
 REM Installation URL
-rem /packaging/installPackage.apexp?p0=04tP3000001cNXhIAM
-rem sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "PCK_TST"
+sf package install -p %packageVersionId% -w 30 --target-org "PCK_TST"
+
+rem /packaging/installPackage.apexp?p0=04tP3000001cPZVIA2
+

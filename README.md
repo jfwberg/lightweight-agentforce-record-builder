@@ -19,9 +19,9 @@ You can do it manual through setup or use the CLI using `sf org assign permset -
 |   |   |   |   |
 |---|---|---|---|
 |Package Name|**[Lightweight - Agentforce Record Builder](https://github.com/jfwberg/lightweight-agentforce-record-builder)**||
-|Package Version|0.3.0-1||
-|Last updated date|Dec 17, 2025||
-|Managed Package | <ul><li> `sf package install --wait 30 --security-type AllUsers --package 04tP3000001cNXhIAM`</li><li>`/packaging/installPackage.apexp?p0=04tP3000001cNXhIAM`</li></ul> | [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tP3000001cNXhIAM) | [Install in Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?mgd=true&p0=04tP3000001cNXhIAM)|
+|Package Version|0.4.0-1||
+|Last updated date|Dec 18, 2025||
+|Managed Package | <ul><li> `sf package install --wait 30 --security-type AllUsers --package 04tP3000001cPZVIA2`</li><li>`/packaging/installPackage.apexp?p0=04tP3000001cPZVIA2`</li></ul> | [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tP3000001cPZVIA2) | [Install in Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?mgd=true&p0=04tP3000001cPZVIA2)|
 
 ## Dependencies
 The following packages need to be installed before installing the main package in the order as below. Note that for this package only *managed packages* are supported.
@@ -65,7 +65,7 @@ call sf package install -p "04tP3000001bWRlIAM" -w 30 --target-org "lightweighta
 call sf org assign permset --name "Lightweight_Record_Tree" --target-org "lightweightagentforcerecordbuilder"
 
 REM Install Package - Lightweight - Agentforce Record Builder (0.3)
-call sf package install -p "04tP3000001cNXhIAM" -w 30 --target-org "lightweightagentforcerecordbuilder"
+call sf package install -p "04tP3000001cPZVIA2" -w 30 --target-org "lightweightagentforcerecordbuilder"
 call sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "lightweightagentforcerecordbuilder"
 ```
 

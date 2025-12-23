@@ -36,7 +36,7 @@ sf org assign permset --name "Lightweight_Apex_Trigger_Util" --target-org "${TAR
 sf package install -p "04tP3000001bWRl04tP3000001cPZVIA2IAM" -w 30 --target-org "${TARGET_ORG}"
 sf org assign permset --name "Lightweight_Record_Tree" --target-org "${TARGET_ORG}"
 
-# Install Package - Lightweight - Agentforce Record Builder (0.3)
+# Install Package - Lightweight - Agentforce Record Builder (0.4)
 sf package install -p "04tP3000001cPZVIA2" -w 30 --target-org "${TARGET_ORG}"
 sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --target-org "${TARGET_ORG}"
 

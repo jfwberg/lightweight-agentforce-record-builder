@@ -1,0 +1,20 @@
+PACKAGE INSTALLATION INSTRUCTIONS
+
+Step 01)Assign the "EinsteinGPTPromptTemplateManager" to the installing user
+
+Step 02) Install the below packages by adding the links below to the end of your Salesforce my domain URL
+    
+    - Lightweight - Apex Unit Test Util v2 (2.7)
+    - /packaging/installPackage.apexp?p0=04tP3000001adwjIAA
+
+    - Lightweight - Apex Trigger Util (0.1)
+    - /packaging/installPackage.apexp?p0=04tP3000001bUo9IAE
+
+    - Lightweight - Record Tree (0.1)
+    - /packaging/installPackage.apexp?p0=04tP3000001bWRlIAM
+
+    - Lightweight - Agentforce Record Builder (0.4)
+    - /packaging/installPackage.apexp?p0=04tP3000001cPZVIA2
+
+
+Step 03) Assign the "Lightweight_Agentforce_Record_Builder_Admin" to your executing user
