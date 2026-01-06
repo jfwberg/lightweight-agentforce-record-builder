@@ -42,9 +42,9 @@ trigger Mapped_sObject_FieldTrigger on Mapped_sObject_Field__c (before insert, b
 
             // Let's check the fields
             for(Mapped_sObject_Field__c record : Trigger.new) {
-                //if(!parentIdSot.get(record.Mapped_sObject__c)?.containsKey(record.name?.toLowerCase())){
-                  //  record.Name.addError('The Field Named "' + record.name + '" does not exist in the metadata. Check the name and validate the namespace.');
-                //}else{
+                if(!parentIdSot.get(record.Mapped_sObject__c)?.containsKey(record.name?.toLowerCase())){
+                    record.Name.addError('The Field Named "' + record.name + '" does not exist in the metadata. Check the name and validate the namespace.');
+                }else{
 
                     // Describe the field to get the proper name and the field type
                     DescribeFieldResult dfr = parentIdSot.get(record.Mapped_sObject__c).get(record.name?.toLowerCase()).getDescribe();
@@ -54,7 +54,7 @@ trigger Mapped_sObject_FieldTrigger on Mapped_sObject_Field__c (before insert, b
                     record.Type__c      = dfr.getType().toString();
                     record.JSON_Type__c = SchemaUtil.DISPLAY_TYPE_TO_JSON_TYPE_MAP.get(dfr.getType()) ?? Constant.DEFAULT_JSON_TYPE;
                     record.Length__c    = dfr.getLength();
-                //}
+                }
             }
 
 

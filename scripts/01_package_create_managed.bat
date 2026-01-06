@@ -12,7 +12,7 @@ SET definitionFile=config/project-package-def.json
 
 REM Package Config
 SET packageId=0HoP300000001lhKAA
-SET packageVersionId=04tP3000001cPZVIA2
+SET packageVersionId=04tP3000001ePLhIAM
 
 REM Create package
 sf package create --name "%packageName%" --description "%packageDescription%" --package-type "%packageType%" --path "%packagePath%" --target-dev-hub %devHub%
@@ -32,5 +32,5 @@ sf package:version:promote -p %packageVersionId% --target-dev-hub %devHub% --no-
 REM Installation URL
 sf package install -p %packageVersionId% -w 30 --target-org "PCK_TST"
 
-rem /packaging/installPackage.apexp?p0=04tP3000001cPZVIA2
+rem /packaging/installPackage.apexp?p0=04tP3000001ePLhIAM
 

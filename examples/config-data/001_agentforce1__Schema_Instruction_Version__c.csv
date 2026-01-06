@@ -1,5 +1,5 @@
 "agentforce1__External_Id__c","agentforce1__Ignore_Triggers__c","agentforce1__Is_Latest__c","agentforce1__Prompt_Output_Hash__c","agentforce1__Prompt_Output_Length__c","agentforce1__Prompt_Output__c","agentforce1__Version_Number__c","agentforce1__Schema_Instruction__r.agentforce1__External_Id__c"
-"2ef97c7e-1c73-4f54-8025-67fcfe266e3d","false","true","fb561d807380e74df6864ee33a75871a823e87af","7528.0","# JSON OUTPUT TREE GENERATION & REFERENCE RULES
+"2ef97c7e-1c73-4f54-8025-67fcfe266e3d","false","true","739119d5ef85d5a02ec8809796d2f9268ed35b5a","8757.0","# JSON OUTPUT TREE GENERATION & REFERENCE RULES
 
 These instructions define how an LLM must generate JSON input for a
 **generic Salesforce record-tree upsert engine**.\
@@ -15,7 +15,7 @@ used for **any data model**.
 
 The LLM must always generate JSON in this exact structural form:
 
-``` json
+```json
 {
   ""records"": [
     { ...root_record_1... },
@@ -36,7 +36,7 @@ The LLM must always generate JSON in this exact structural form:
 
 Each record **must** contain:
 
-``` json
+```json
 ""attributes"": {
   ""type"": ""SObjectApiName"",
   ""referenceId"": ""unique_ref_string""
@@ -53,6 +53,13 @@ Each record **must** contain:
 -   A **unique key** within this JSON document.
 -   Used for lookup references (`@{ref}`).
 -   Not a Salesforce ID.
+-   Do not use a salesforce Id in the @{} part. Always come up with your own custom, unique Id
+-   Bad Example: @{a0DPt000009XzHLMA0} Good Example: @{schemRecord01}
+
+### Input Record Ids
+-   Prompt templates (i.e. the input data) might already have some Ids for say account Id or Case Id
+-   When input data is mentioned, make sure to use the actual salesforce Id from the inut and not an @{ref}
+
 
 ### `attributes.purposeDescription`
 -   This field is NOT part of the payload but describes the purpose of this specific sObject in regards to mapping the input data
@@ -60,7 +67,7 @@ Each record **must** contain:
 
 ### Example (generic):
 
-``` json
+```json
 {
   ""attributes"": {
     ""type"": ""Example__c"",
@@ -83,7 +90,7 @@ Each record **must** contain:
 Child records appear under their **relationship name**, formatted
 exactly like:
 
-``` json
+```json
 ""RelationshipName__r"": {
   ""records"": [
     { ...child... },
@@ -130,7 +137,7 @@ the JSON tree.
 
 Example generic lookup:
 
-``` json
+```json
 ""Parent__c"": ""@{parent_ref}""
 ```
 
@@ -150,15 +157,16 @@ These tell the LLM **how to format and populate** each field.
 
 ### 5.1 Supported `[DATA_TYPE]` values
 
-  DATA_TYPE     Meaning
-  ------------- ------------------------------------------
-  `String`      JSON string
-  `Number`      JSON number (integer or decimal)
-  `Boolean`     `true`/`false`
-  `Date`        ISO8601 date string `""YYYY-MM-DD""`
-  `DateTime`    ISO8601 datetime string
-  `Time`        ISO8601 time string
-  `REFERENCE`   A lookup field that must be `""@{refId}""`
+| DATA_TYPE   | Meaning                                           | Example                         |
+|-------------|---------------------------------------------------|---------------------------------|
+| `String`    | JSON string                                       | `""Hello World""`                 |
+| `Number`    | JSON number (integer or decimal)                  | `42` / `3.14`                   |
+| `Boolean`   | `true` / `false`                                  | `true`                          |
+| `Date`      | ISO8601 date string (`""YYYY-MM-DD""`)              | `""2025-03-14""`                  |
+| `DateTime`  | ISO8601 datetime string                           | `""2025-03-14T10:30:00Z""`        |
+| `Time`      | ISO8601 time string                               | `""10:30:00""`                    |
+| `REFERENCE` | A lookup field that must be `""@{refId}""`          | `""@{Account_1}""`                |
+
 
 ### 5.2 `[DATA_LENGTH]`
 
@@ -221,7 +229,7 @@ Must always use ISO8601 format: - Date → `""YYYY-MM-DD""` - DateTime →
 
 # 7. Example Generic Outline
 
-``` json
+```json
 {
   ""records"": [
     {
@@ -256,13 +264,13 @@ The LLM must:
 
 1.  Always output:
 
-    ``` json
+    ```json
     { ""records"": [ ... ] }
     ```
 
 2.  Always include:
 
-    ``` json
+    ```json
     ""attributes"": {
       ""type"": ""SObjectApiName"",
       ""referenceId"": ""unique_string""
@@ -281,10 +289,10 @@ The LLM must:
 
 8.  Child records always go in:
 
-    ``` json
+    ```json
     ""RelationshipName"": { ""records"": [ ... ] }
     ```
 
 9.  Never invent or rename fields or relationships.
 
-------------------------------------------------------------------------","3.0","506be2ee-3a93-48a8-8e98-23a3e787ede1"
+------------------------------------------------------------------------","1.0","506be2ee-3a93-48a8-8e98-23a3e787ede1"
