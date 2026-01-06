@@ -1,5 +1,5 @@
 "agentforce1__External_Id__c","agentforce1__Ignore_Triggers__c","agentforce1__Is_Latest__c","agentforce1__Prompt_Output_Hash__c","agentforce1__Prompt_Output_Length__c","agentforce1__Prompt_Output__c","agentforce1__Version_Number__c","agentforce1__Schema_Instruction__r.agentforce1__External_Id__c"
-"05e90435-00ef-4117-ad0a-4749abdc132b","false","true","fb561d807380e74df6864ee33a75871a823e87af","7528.0","# JSON OUTPUT TREE GENERATION & REFERENCE RULES
+"2ef97c7e-1c73-4f54-8025-67fcfe266e3d","false","true","fb561d807380e74df6864ee33a75871a823e87af","7528.0","# JSON OUTPUT TREE GENERATION & REFERENCE RULES
 
 These instructions define how an LLM must generate JSON input for a
 **generic Salesforce record-tree upsert engine**.\
@@ -287,4 +287,4 @@ The LLM must:
 
 9.  Never invent or rename fields or relationships.
 
-------------------------------------------------------------------------","3.0","6a5e4ab9-858b-4e59-be16-c2c7b3a9b654"
+------------------------------------------------------------------------","3.0","506be2ee-3a93-48a8-8e98-23a3e787ede1"

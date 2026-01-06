@@ -7,8 +7,8 @@ This utility allows you to create a Salesforce Record Tree with linked Lookup fi
 
 ## Blog
 For detailed design decisions and instructions please read my blog posts below.
-- [Coming soon](https://)
-- [Coming soon](https://)
+- [Convert Prompt Templates To Related Salesforce Records Fully Declaratively](https://medium.com/@justusvandenberg/convert-prompt-templates-to-related-salesforce-records-fully-declaratively-0561e5e434cc)
+- [Convert Prompt Templates To Related Salesforce Records Fully Declaratively — Example Step By Step Instructions](https://medium.com/@justusvandenberg/convert-prompt-templates-to-related-salesforce-records-fully-declaratively-example-step-by-step-e8cd4b035eef)
 
 ## Pre-Install
 Make sure that the installing user has the **`EinsteinGPTPromptTemplateManager`** permission set assigned *BEFORE* you run the install. This is required in order to deploy the included prompt templates. If you run into any flow related errors during the package install this is most likely the reason.

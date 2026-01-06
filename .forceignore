@@ -16,6 +16,6 @@ package.xml
 
 #**/genAiPromptTemplates/** 
 #**/flows/** 
-**/objects/Account** 
+#**/objects/Account** 
 **/objects/Contact** 
 **/permissionsetgroups/** 
