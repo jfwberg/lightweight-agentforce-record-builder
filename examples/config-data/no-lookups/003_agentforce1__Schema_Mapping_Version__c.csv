@@ -1,176 +1,4 @@
 "agentforce1__External_Id__c","agentforce1__Ignore_Triggers__c","agentforce1__Is_Latest__c","agentforce1__Prompt_Output_Hash__c","agentforce1__Prompt_Output_Length__c","agentforce1__Prompt_Output__c","agentforce1__Version_Number__c","agentforce1__Schema_Mapping__r.agentforce1__External_Id__c"
-"86691cb3-24cc-49e4-b96a-951a6371c561","false","true","b14f1075c66f6f0624bcf6b7f9e3aa1d08e8c63f","8100.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
-Extracting a business process from a flowchart into a data structure containing a process object and a process step object that are linked together.
-
-## SCHEMA MAPPING JSON OUTPUT FORMAT
-```json
-{
-  ""records"" : [ {
-    ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This is a lookup to the process. Populate this with the process RefId accordingly[/PURPOSE]}}"",
-    ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Fill this value with: Review Process Task + The name of the process[/PURPOSE]}}"",
-    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The task should be a process review task. Put a note in here to review the newly extracted process[/PURPOSE]}}"",
-    ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Create the data one week from now[/PURPOSE]}}"",
-    ""attributes"" : {
-      ""purposeDescription"" : null,
-      ""referenceId"" : ""[Replace with the referenceId]"",
-      ""type"" : ""Task""
-    }
-  }, {
-    ""ContentDocumentLinks"" : {
-      ""records"" : [ {
-        ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Populate this field with the Content Document File Id from the input file of the prompt template. This is the Salesforce Id and not a refId.[/PURPOSE]}}"",
-        ""attributes"" : {
-          ""purposeDescription"" : ""test"",
-          ""referenceId"" : ""[Replace with the referenceId]"",
-          ""type"" : ""ContentDocumentLink""
-        }
-      } ]
-    },
-    ""Steps__r"" : {
-      ""records"" : [ {
-        ""Outcomes1__r"" : {
-          ""records"" : [ {
-            ""Next_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The is the lookup reference to the next step in the process. Populate this field with the matching refId of the next step[/PURPOSE]}}"",
-            ""Process__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup field to the parent Process__c record. Apply the refId accordingly[/PURPOSE]}}"",
-            ""Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup to the parent step record. Populate with the parent refId[/PURPOSE]}}"",
-            ""Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the parent step formatted like \""SP_xxxx\"" to link this outcome to a step[/PURPOSE]}}"",
-            ""Next_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]the Id of the next step, required for decision. This is formatted like PS_xxxx[/PURPOSE]}}"",
-            ""Process_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Id of the parent process. Formatted like 'PROC_xxxx' this field is to match it all up the \""ultimate\"" parent so to speak[/PURPOSE]}}"",
-            ""Condition__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The value of the condition, required for decision.[/PURPOSE]}}"",
-            ""attributes"" : {
-              ""purposeDescription"" : ""This list of outcomes is added as a child of the process steps when the type is decision. When a decision is made there are multiple outcomes. Outcomes."",
-              ""referenceId"" : ""[Replace with the referenceId]"",
-              ""type"" : ""Outcome__c""
-            }
-          } ]
-        },
-        ""Next_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The is the lookup reference to the next step in the process. Populate this field with the matching refId of the next step[/PURPOSE]}}"",
-        ""Next_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Field containing the Id of the next action, only applies when the type field is \""Process\"". There is no next step when the type is \""End\"" or \""Decision\""[/PURPOSE]}}"",
-        ""Actor__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]If you can find any logical actor, the actor value goes in here[/PURPOSE]}}"",
-        ""Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The unique id of this step formatted like 'PS_xxxx' use padding with zeroes for the number that is represented by the 4x[/PURPOSE]}}"",
-        ""Actor_Role__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The role of the actor if you can find it, Human, Agent, System etc. Be consistent and don't overcomplicate it[/PURPOSE]}}"",
-        ""Process_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Unique Process Id of the parent formattted like 'PROC_xxxx' or if there is a clear process Id in the flow use that one. Match it to the parent value.[/PURPOSE]}}"",
-        ""Action__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The action value and or action description, whatever is availible / makes sense. It will usually be the name.[/PURPOSE]}}"",
-        ""Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Valid values are \""Process\"", \""Decision\"" or \""End\"" depending on the type of process[/PURPOSE]}}"",
-        ""attributes"" : {
-          ""purposeDescription"" : ""This object contains all information relating a step in a business process. There are different types of steps: Start, Process, Decision and End."",
-          ""referenceId"" : ""[Replace with the referenceId]"",
-          ""type"" : ""Step__c""
-        }
-      } ]
-    },
-    ""Start_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This field is a reference field that is the lookup to first step in the analysed process. This is where the process starts.[/PURPOSE]}}"",
-    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The name of the process. If there is a clear title use this tile. If not make up a title based on the file name and or what makes sense from the entire context of the process.[/PURPOSE]}}"",
-    ""AI_Model__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The AI Model Used to extract the process. This is a system field and will be specified. Ignore this for the process extraction as it is not relevant.[/PURPOSE]}}"",
-    ""Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Unique Process Id. If on the process you can find a clear process Id populate that here. If you cannot find any specific process Id format the process like 'PROC_xxxx' and for each process up the number. Pad the value with zeroes on the left.[/PURPOSE]}}"",
-    ""Version__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]{If you can find a version, apply the version else default the version to 1.0}[/PURPOSE]}}"",
-    ""Start_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The (external) Id that is generated for the start step. This creates the link based on the external id and is not an id in the technical sense.[/PURPOSE]}}"",
-    ""Notes__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]100000[/DATA_LENGTH][PURPOSE]A list of notes where you can put feedback or any errors. It could be that the flow chart is invalid, missing items, infinity loops etc. If you run into these issues put them in here.[/PURPOSE]}}"",
-    ""Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]A short description of the process[/PURPOSE]}}"",
-    ""Summary__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]100000[/DATA_LENGTH][PURPOSE]A summary of the process in a few lines used to find the process by users through AI search. So make this contain the items a user would search for to find the process easily[/PURPOSE]}}"",
-    ""attributes"" : {
-      ""purposeDescription"" : ""This objects contains all the generic metadata related a business process. Things like the name, version etc."",
-      ""referenceId"" : ""[Replace with the referenceId]"",
-      ""type"" : ""Process__c""
-    }
-  } ]
-}
-```","1.0","406bf323-fbcf-4f1f-8438-1a98de7d0b37"
-"5c386a3a-cb04-44d5-848b-d43d7ea53fb1","false","true","3d3c5b82680b1996757dbb6eaed61e9f725efeaf","6530.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
-This mapping is used to create some basic (themed or professional looking) test data based on the generated schema mapping.
-
-## SCHEMA MAPPING JSON OUTPUT FORMAT
-```json
-{
-  ""records"" : [ {
-    ""Contacts"" : {
-      ""records"" : [ {
-        ""Opportunities"" : {
-          ""records"" : [ {
-            ""Tasks"" : {
-              ""records"" : [ {
-                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a realistic subject[/PURPOSE]}}"",
-                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a real-life or plausible description[/PURPOSE]}}"",
-                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this one week from today[/PURPOSE]}}"",
-                ""WhoId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Link this to the contact[/PURPOSE]}}"",
-                ""attributes"" : {
-                  ""purposeDescription"" : ""test"",
-                  ""referenceId"" : ""[Replace with the referenceId]"",
-                  ""type"" : ""Task""
-                }
-              } ]
-            },
-            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Relate this to the parent account[/PURPOSE]}}"",
-            ""StageName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Set as \""New\""[/PURPOSE]}}"",
-            ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]120[/DATA_LENGTH][PURPOSE]Give if a suitable, yet believable name[/PURPOSE]}}"",
-            ""CloseDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Generate a close date between 1 day or 100 days in the future[/PURPOSE]}}"",
-            ""attributes"" : {
-              ""purposeDescription"" : ""test"",
-              ""referenceId"" : ""[Replace with the referenceId]"",
-              ""type"" : ""Opportunity""
-            }
-          } ]
-        },
-        ""Cases"" : {
-          ""records"" : [ {
-            ""Tasks"" : {
-              ""records"" : [ {
-                ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Map this to the parent Account record[/PURPOSE]}}"",
-                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a proper subject[/PURPOSE]}}"",
-                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a functional description[/PURPOSE]}}"",
-                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this to 2 weeks from now[/PURPOSE]}}"",
-                ""attributes"" : {
-                  ""purposeDescription"" : ""test"",
-                  ""referenceId"" : ""[Replace with the referenceId]"",
-                  ""type"" : ""Task""
-                }
-              } ]
-            },
-            ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The case subject[/PURPOSE]}}"",
-            ""Status"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The status. Set this to New if you're unsure[/PURPOSE]}}"",
-            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of what the request is[/PURPOSE]}}"",
-            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A reference to the parent account. Populate with the @{refId}[/PURPOSE]}}"",
-            ""attributes"" : {
-              ""purposeDescription"" : ""test"",
-              ""referenceId"" : ""[Replace with the referenceId]"",
-              ""type"" : ""Case""
-            }
-          } ]
-        },
-        ""LastName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The last name[/PURPOSE]}}"",
-        ""FirstName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The first name[/PURPOSE]}}"",
-        ""Email"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The email address. Always add .example at the end as this is  a test[/PURPOSE]}}"",
-        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Short description about this person[/PURPOSE]}}"",
-        ""Birthdate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The birthdate, make sure this is not any lower than 02/02/1900. If its lower make this the default date[/PURPOSE]}}"",
-        ""attributes"" : {
-          ""purposeDescription"" : ""test"",
-          ""referenceId"" : ""[Replace with the referenceId]"",
-          ""type"" : ""Contact""
-        }
-      } ]
-    },
-    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the account[/PURPOSE]}}"",
-    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The description of the account, in a few lines what they do[/PURPOSE]}}"",
-    ""BillingStreet"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The billing street.[/PURPOSE]}}"",
-    ""BillingCountry"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The billing country.[/PURPOSE]}}"",
-    ""BillingCity"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The billing city.[/PURPOSE]}}"",
-    ""AnnualRevenue"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The revenue the company makes. Make sure this does not exceed 100 million.[/PURPOSE]}}"",
-    ""attributes"" : {
-      ""purposeDescription"" : null,
-      ""referenceId"" : ""[Replace with the referenceId]"",
-      ""type"" : ""Account""
-    }
-  }, {
-    ""LinkedEntityId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The link to either the related record (Account or Contact)[/PURPOSE]}}"",
-    ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This is the 18 character salesforce Id that comes from the prompt template input.[/PURPOSE]}}"",
-    ""attributes"" : {
-      ""purposeDescription"" : ""This links an optional file to the accounts and contacts so we can track the input file. Create one of these records for each account and contact record.\r\nLinks are based on the ContentDocumentId that is received from the prompt template. If there is more than one input file, create a linked record for each of the files."",
-      ""referenceId"" : ""[Replace with the referenceId]"",
-      ""type"" : ""ContentDocumentLink""
-    }
-  } ]
-}
-```","8.0","50e7954c-3a4c-4874-9879-f449ea922439"
 "f912452b-4da8-425c-ab5a-6dbb584e4b57","false","true","e212de7107975ef31f073e3608c4006a925bb4f3","1753.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
 Analyse incoming emails related to a case to see if they are actually spam emails. We give them a likely Score and reason on what to check for as well as a status.
 
@@ -419,3 +247,277 @@ Analyse customer uploaded photos of electricity infrastructure damage caused by 
   } ]
 }
 ```","1.0","bd2dfad5-9758-4dfb-8921-562a2b054d4c"
+"62fafdf3-3971-4a31-96a6-9b88257bbd17","false","false","6366bf6ade18764b99a9038cd99d97c3e3b15b65","6476.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+This mapping is used to create some basic (themed or professional looking) test data based on the generated schema mapping.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+```json
+{
+  ""records"" : [ {
+    ""ContentDocumentLinks"" : {
+      ""records"" : [ {
+        ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Link to the 18 Character Salesforce Id for the ContentDocumentId file that is the input for the prompt template[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This links an optional file to the accounts and contacts so we can track the input file. Create one of these records for each account and contact record.\nLinks are based on the ContentDocumentId that is received from the prompt template. If there is more than one input file, create a linked record for each of the files."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""ContentDocumentLink""
+        }
+      } ]
+    },
+    ""Contacts"" : {
+      ""records"" : [ {
+        ""Opportunities"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a realistic subject[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a real-life or plausible description[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this one week from today[/PURPOSE]}}"",
+                ""WhoId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Link this to the contact[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Relate this to the parent account[/PURPOSE]}}"",
+            ""StageName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Set as \""New\""[/PURPOSE]}}"",
+            ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]120[/DATA_LENGTH][PURPOSE]Give if a suitable, yet believable name[/PURPOSE]}}"",
+            ""CloseDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Generate a close date between 1 day or 100 days in the future[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Opportunity""
+            }
+          } ]
+        },
+        ""Cases"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Map this to the parent Account record[/PURPOSE]}}"",
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a proper subject[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a functional description[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this to 2 weeks from now[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The case subject[/PURPOSE]}}"",
+            ""Status"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The status. Set this to New if you're unsure[/PURPOSE]}}"",
+            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of what the request is[/PURPOSE]}}"",
+            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A reference to the parent account. Populate with the @{refId}[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Case""
+            }
+          } ]
+        },
+        ""LastName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The last name[/PURPOSE]}}"",
+        ""FirstName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The first name[/PURPOSE]}}"",
+        ""Email"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The email address. Always add .example at the end as this is  a test[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Short description about this person[/PURPOSE]}}"",
+        ""Birthdate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The birthdate, make sure this is not any lower than 02/02/1900. If its lower make this the default date[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""test"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Contact""
+        }
+      } ]
+    },
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the account[/PURPOSE]}}"",
+    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The description of the account, in a few lines what they do[/PURPOSE]}}"",
+    ""BillingStreet"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The billing street.[/PURPOSE]}}"",
+    ""BillingCountry"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The billing country.[/PURPOSE]}}"",
+    ""BillingCity"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The billing city.[/PURPOSE]}}"",
+    ""AnnualRevenue"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The revenue the company makes. Make sure this does not exceed 100 million.[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : null,
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Account""
+    }
+  } ]
+}
+```","1.0","50e7954c-3a4c-4874-9879-f449ea922439"
+"e40df672-90cd-4b70-b0ae-d4886facb26e","false","true","13e98e202f3d33b425d6c73ba13541e15c490f28","6405.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+This mapping is used to create some basic (themed or professional looking) test data based on the generated schema mapping.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+```json
+{
+  ""records"" : [ {
+    ""ContentDocumentLinks"" : {
+      ""records"" : [ {
+        ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Link to the 18 Character Salesforce Id for the ContentDocumentId file that is the input for the prompt template[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This links an optional input file to the top level account record. Only link the top level account. If there is no input file or you are not 100% certain about the ContentDocumentId from the prompt template, do not create a ContentDocumentLink record."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""ContentDocumentLink""
+        }
+      } ]
+    },
+    ""Contacts"" : {
+      ""records"" : [ {
+        ""Opportunities"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a realistic subject[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a real-life or plausible description[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this one week from today[/PURPOSE]}}"",
+                ""WhoId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Link this to the contact[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Relate this to the parent account[/PURPOSE]}}"",
+            ""StageName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Set as \""New\""[/PURPOSE]}}"",
+            ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]120[/DATA_LENGTH][PURPOSE]Give if a suitable, yet believable name[/PURPOSE]}}"",
+            ""CloseDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Generate a close date between 1 day or 100 days in the future[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Opportunity""
+            }
+          } ]
+        },
+        ""Cases"" : {
+          ""records"" : [ {
+            ""Tasks"" : {
+              ""records"" : [ {
+                ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Map this to the parent Account record[/PURPOSE]}}"",
+                ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Give it a proper subject[/PURPOSE]}}"",
+                ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Give a functional description[/PURPOSE]}}"",
+                ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Set this to 2 weeks from now[/PURPOSE]}}"",
+                ""attributes"" : {
+                  ""purposeDescription"" : ""test"",
+                  ""referenceId"" : ""[Replace with the referenceId]"",
+                  ""type"" : ""Task""
+                }
+              } ]
+            },
+            ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The case subject[/PURPOSE]}}"",
+            ""Status"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The status. Set this to New if you're unsure[/PURPOSE]}}"",
+            ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]A short description of what the request is[/PURPOSE]}}"",
+            ""AccountId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A reference to the parent account. Populate with the @{refId}[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""test"",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Case""
+            }
+          } ]
+        },
+        ""LastName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The last name[/PURPOSE]}}"",
+        ""FirstName"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The first name[/PURPOSE]}}"",
+        ""Email"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The email address. Always add .example at the end as this is  a test[/PURPOSE]}}"",
+        ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]Short description about this person[/PURPOSE]}}"",
+        ""Birthdate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The birthdate, make sure this is not any lower than 02/02/1900. If its lower make this the default date[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""test"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Contact""
+        }
+      } ]
+    },
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the account[/PURPOSE]}}"",
+    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The description of the account, in a few lines what they do[/PURPOSE]}}"",
+    ""BillingStreet"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The billing street.[/PURPOSE]}}"",
+    ""BillingCountry"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The billing country.[/PURPOSE]}}"",
+    ""BillingCity"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]40[/DATA_LENGTH][PURPOSE]The billing city.[/PURPOSE]}}"",
+    ""AnnualRevenue"" : ""{{[DATA_TYPE]Number[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]The revenue the company makes. Make sure this does not exceed 100 million.[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : null,
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Account""
+    }
+  } ]
+}
+```","2.0","50e7954c-3a4c-4874-9879-f449ea922439"
+"93b8898e-f466-4009-8e93-95f3ef83d8be","false","true","acf09c6072ac7b835e71ad66fdc306bdd171d8df","8649.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
+Extracting a business process from a flowchart into a data structure containing a process object and a process step object that are linked together.
+
+## SCHEMA MAPPING JSON OUTPUT FORMAT
+```json
+{
+  ""records"" : [ {
+    ""WhatId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This is a lookup to the process. Populate this with the process RefId accordingly[/PURPOSE]}}"",
+    ""Subject"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Fill this value with: Review Process Task + The name of the process[/PURPOSE]}}"",
+    ""Description"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]32000[/DATA_LENGTH][PURPOSE]The task should be a process review task. Put a note in here to review the newly extracted process[/PURPOSE]}}"",
+    ""ActivityDate"" : ""{{[DATA_TYPE]Date[/DATA_TYPE][DATA_LENGTH]0[/DATA_LENGTH][PURPOSE]Create the data one week from now[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : null,
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Task""
+    }
+  }, {
+    ""ContentDocumentLinks"" : {
+      ""records"" : [ {
+        ""ContentDocumentId"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]Populate this field with the Content Document File Id from the input file of the prompt template. This is the Salesforce Id and not a refId.[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""test"",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""ContentDocumentLink""
+        }
+      } ]
+    },
+    ""Steps__r"" : {
+      ""records"" : [ {
+        ""Outcomes1__r"" : {
+          ""records"" : [ {
+            ""External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]This is a mandatory field put a non-deterministic random value in here.[/PURPOSE]}}"",
+            ""Next_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The is the lookup reference to the next step in the process. Populate this field with the matching refId of the next step[/PURPOSE]}}"",
+            ""Process__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup field to the parent Process__c record. Apply the refId accordingly[/PURPOSE]}}"",
+            ""Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]A lookup to the parent step record. Populate with the parent refId[/PURPOSE]}}"",
+            ""Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The name of the parent step formatted like \""SP_xxxx\"" to link this outcome to a step[/PURPOSE]}}"",
+            ""Next_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]the Id of the next step, required for decision. This is formatted like PS_xxxx[/PURPOSE]}}"",
+            ""Process_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Id of the parent process. Formatted like 'PROC_xxxx' this field is to match it all up the \""ultimate\"" parent so to speak[/PURPOSE]}}"",
+            ""Condition__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The value of the condition, required for decision.[/PURPOSE]}}"",
+            ""attributes"" : {
+              ""purposeDescription"" : ""This list of outcomes is added as a child of the process steps when the type is decision. When a decision is made there are multiple outcomes. Outcomes."",
+              ""referenceId"" : ""[Replace with the referenceId]"",
+              ""type"" : ""Outcome__c""
+            }
+          } ]
+        },
+        ""External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]This is a mandatory field put a non-deterministic random value in here.[/PURPOSE]}}"",
+        ""Next_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]The is the lookup reference to the next step in the process. Populate this field with the matching refId of the next step[/PURPOSE]}}"",
+        ""Next_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Field containing the Id of the next action, only applies when the type field is \""Process\"". There is no next step when the type is \""End\"" or \""Decision\""[/PURPOSE]}}"",
+        ""Actor__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]If you can find any logical actor, the actor value goes in here[/PURPOSE]}}"",
+        ""Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The unique id of this step formatted like 'PS_xxxx' use padding with zeroes for the number that is represented by the 4x[/PURPOSE]}}"",
+        ""Actor_Role__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The role of the actor if you can find it, Human, Agent, System etc. Be consistent and don't overcomplicate it[/PURPOSE]}}"",
+        ""Process_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Unique Process Id of the parent formattted like 'PROC_xxxx' or if there is a clear process Id in the flow use that one. Match it to the parent value.[/PURPOSE]}}"",
+        ""Action__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The action value and or action description, whatever is availible / makes sense. It will usually be the name.[/PURPOSE]}}"",
+        ""Type__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]Valid values are \""Process\"", \""Decision\"" or \""End\"" depending on the type of process[/PURPOSE]}}"",
+        ""attributes"" : {
+          ""purposeDescription"" : ""This object contains all information relating a step in a business process. There are different types of steps: Start, Process, Decision and End."",
+          ""referenceId"" : ""[Replace with the referenceId]"",
+          ""type"" : ""Step__c""
+        }
+      } ]
+    },
+    ""External_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]36[/DATA_LENGTH][PURPOSE]This is a mandatory field put a non-deterministic random value in here.[/PURPOSE]}}"",
+    ""Start_Step__c"" : ""{{[DATA_TYPE]REFERENCE[/DATA_TYPE][DATA_LENGTH]18[/DATA_LENGTH][PURPOSE]This field is a reference field that is the lookup to first step in the analysed process. This is where the process starts.[/PURPOSE]}}"",
+    ""Name"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]80[/DATA_LENGTH][PURPOSE]The name of the process. If there is a clear title use this tile. If not make up a title based on the file name and or what makes sense from the entire context of the process.[/PURPOSE]}}"",
+    ""AI_Model__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The AI Model Used to extract the process. This is a system field and will be specified. Ignore this for the process extraction as it is not relevant.[/PURPOSE]}}"",
+    ""Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The Unique Process Id. If on the process you can find a clear process Id populate that here. If you cannot find any specific process Id format the process like 'PROC_xxxx' and for each process up the number. Pad the value with zeroes on the left.[/PURPOSE]}}"",
+    ""Version__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]{If you can find a version, apply the version else default the version to 1.0}[/PURPOSE]}}"",
+    ""Start_Step_Id__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]The (external) Id that is generated for the start step. This creates the link based on the external id and is not an id in the technical sense.[/PURPOSE]}}"",
+    ""Notes__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]100000[/DATA_LENGTH][PURPOSE]A list of notes where you can put feedback or any errors. It could be that the flow chart is invalid, missing items, infinity loops etc. If you run into these issues put them in here.[/PURPOSE]}}"",
+    ""Description__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]255[/DATA_LENGTH][PURPOSE]A short description of the process[/PURPOSE]}}"",
+    ""Summary__c"" : ""{{[DATA_TYPE]String[/DATA_TYPE][DATA_LENGTH]100000[/DATA_LENGTH][PURPOSE]A summary of the process in a few lines used to find the process by users through AI search. So make this contain the items a user would search for to find the process easily[/PURPOSE]}}"",
+    ""attributes"" : {
+      ""purposeDescription"" : ""This objects contains all the generic metadata related a business process. Things like the name, version etc."",
+      ""referenceId"" : ""[Replace with the referenceId]"",
+      ""type"" : ""Process__c""
+    }
+  } ]
+}
+```","1.0","406bf323-fbcf-4f1f-8438-1a98de7d0b37"
