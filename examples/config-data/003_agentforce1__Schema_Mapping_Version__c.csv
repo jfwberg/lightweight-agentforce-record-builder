@@ -343,7 +343,7 @@ This mapping is used to create some basic (themed or professional looking) test 
     }
   } ]
 }
-```","1.0","50e7954c-3a4c-4874-9879-f449ea922439"
+```","1.0","c30b8095-4fb0-4b3b-bd6d-63b8c36c7111"
 "e40df672-90cd-4b70-b0ae-d4886facb26e","false","true","13e98e202f3d33b425d6c73ba13541e15c490f28","6405.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
 This mapping is used to create some basic (themed or professional looking) test data based on the generated schema mapping.
 
@@ -440,7 +440,7 @@ This mapping is used to create some basic (themed or professional looking) test 
     }
   } ]
 }
-```","2.0","50e7954c-3a4c-4874-9879-f449ea922439"
+```","2.0","c30b8095-4fb0-4b3b-bd6d-63b8c36c7111"
 "93b8898e-f466-4009-8e93-95f3ef83d8be","false","true","acf09c6072ac7b835e71ad66fdc306bdd171d8df","8649.0","## SCHEMA MAPPING PURPOSE DESCRIPTION
 Extracting a business process from a flowchart into a data structure containing a process object and a process step object that are linked together.
 
