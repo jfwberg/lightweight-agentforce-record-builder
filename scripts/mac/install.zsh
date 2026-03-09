@@ -10,7 +10,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
 
 # Set target org alias (override by exporting TARGET_ORG before running)
-TARGET_ORG="${TARGET_ORG:-lightweightagentforcerecordbuilder}"
+TARGET_ORG="${TARGET_ORG:-lightweightagentforcerecordbuilder2}"
 
 # Set the wanted dev-hub
 sf config set target-dev-hub="defaultDevHub"
@@ -44,6 +44,6 @@ sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --tar
 sf org open --target-org "${TARGET_ORG}"
 
 # Run the data import script from the correct path (scripts/mac)
-zsh "$SCRIPT_DIR/import_data.zsh"
+#zsh "$SCRIPT_DIR/import_data.zsh"
 
 echo "All steps completed successfully."
