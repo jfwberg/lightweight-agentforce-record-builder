@@ -63,7 +63,7 @@ public with sharing class AgentforceProcessQuestionCtrl {
             };
 
         }catch (Exception e) {   
-          throw new AuraHandledException(e.getMessage());
+          throw new AuraHandledException(e.getMessage() + e.getMessage());
         }
     }
 

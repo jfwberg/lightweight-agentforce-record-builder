@@ -10,10 +10,10 @@
 Free text instructions here:
 {!$Input:Instructions}
 
-## Mapping Instructions ##
+## OUTPUT FORMAT INSTRUCTIONS ##
 {!$Input:Schema_Mapping.agentforce1__Schema_Instruction__r.agentforce1__Latest_Version__r.agentforce1__Prompt_Output__c}
 
-## JSON SCHEMA TO MAP TO
+## INPUT DATA TO JSON MAPPING ##
 {!$Input:Schema_Mapping.agentforce1__Latest_Version__r.agentforce1__Prompt_Output__c}
 </content>
         <inputs>

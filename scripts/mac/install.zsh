@@ -10,7 +10,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
 
 # Set target org alias (override by exporting TARGET_ORG before running)
-TARGET_ORG="${TARGET_ORG:-lightweightagentforcerecordbuilder}"
+TARGET_ORG="${TARGET_ORG:-lightweightagentforcerecordbuilder2}"
 
 # Set the wanted dev-hub
 sf config set target-dev-hub="defaultDevHub"
@@ -33,7 +33,7 @@ sf package install -p "04tP3000001bUo9IAE" -w 30 --target-org "${TARGET_ORG}"
 sf org assign permset --name "Lightweight_Apex_Trigger_Util" --target-org "${TARGET_ORG}"
 
 # Install Package - Lightweight - Record Tree (0.1)
-sf package install -p "04tP3000001bWRl04tP3000001cPZVIA2IAM" -w 30 --target-org "${TARGET_ORG}"
+sf package install -p "04tP3000001bWRlIAM" -w 30 --target-org "${TARGET_ORG}"
 sf org assign permset --name "Lightweight_Record_Tree" --target-org "${TARGET_ORG}"
 
 # Install Package - Lightweight - Agentforce Record Builder (0.4)
@@ -44,6 +44,6 @@ sf org assign permset --name "Lightweight_Agentforce_Record_Builder_Admin" --tar
 sf org open --target-org "${TARGET_ORG}"
 
 # Run the data import script from the correct path (scripts/mac)
-zsh "$SCRIPT_DIR/import_data.zsh"
+#zsh "$SCRIPT_DIR/import_data.zsh"
 
 echo "All steps completed successfully."
