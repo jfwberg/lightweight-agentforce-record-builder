@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>UgHd2wV4u6lxl3Q2xU5KXM7PBfp3EtYg2GeVVBzGG5Y=_3</activeVersionIdentifier>
+    <description>A generic template that can be used for testing the &quot;Lightweight - Agentforce Record Builder&quot; with a free text instruction input.</description>
+    <developerName>Lightweight_Agentforce_Record_Builder_Tester_GPT_5_5</developerName>
+    <masterLabel>Lightweight - Agentforce Record Builder Tester (GPT 5.5)</masterLabel>
+    <templateVersions>
+        <content>## INPUT DATA / INSTRUCTIONS
+
+Free text instructions here:
+{!$Input:Instructions}
+
+## Mapping Instructions ##
+{!$Input:Schema_Mapping.agentforce1__Schema_Instruction__r.agentforce1__Latest_Version__r.agentforce1__Prompt_Output__c}
+
+## JSON SCHEMA TO MAP TO
+{!$Input:Schema_Mapping.agentforce1__Latest_Version__r.agentforce1__Prompt_Output__c}
+</content>
+        <inputs>
+            <apiName>Schema_Mapping</apiName>
+            <definition>SOBJECT://Schema_Mapping__c</definition>
+            <masterLabel>Schema_Mapping</masterLabel>
+            <referenceName>Input:Schema_Mapping</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Instructions</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Instructions</masterLabel>
+            <referenceName>Input:Instructions</referenceName>
+            <required>false</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT54</primaryModel>
+        <responseFormat>JSON</responseFormat>
+        <status>Published</status>
+        <versionIdentifier>UgHd2wV4u6lxl3Q2xU5KXM7PBfp3EtYg2GeVVBzGG5Y=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Execute_Prompt_Template</name>
-        <label>Execute Prompt Template</label>
+        <name>Execute_Google_Gemini_Pro_2_5_Prompt_Template</name>
+        <label>Execute Google Gemini Pro 2.5 Prompt Template</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester</actionName>
         <actionType>generatePromptResponse</actionType>
         <connector>
-            <targetReference>Assign_Prompt_Template_Output_To_Variable</targetReference>
+            <targetReference>Show_Results</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:Schema_Mapping</name>
+            <value>
+                <elementReference>Get_Schema_Mapping</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Instructions</name>
+            <value>
+                <elementReference>Instructions</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>PromptOutputJSON</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Execute_Google_Gemini_Pro_2_5_Prompt_Template_With_File</name>
+        <label>Execute Google Gemini Pro 2.5 Prompt Template With File</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Show_Results</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:Schema_Mapping</name>
+            <value>
+                <elementReference>Get_Schema_Mapping</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:File</name>
+            <value>
+                <elementReference>Get_File</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Instructions</name>
+            <value>
+                <elementReference>Instructions</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>PromptOutputJSON</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Execute_GPT_5_5_Prompt_Template</name>
+        <label>Execute GPT 5.5 Prompt Template</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_GPT_5_5</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Show_Results</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -23,19 +89,22 @@
                 <elementReference>Get_Schema_Mapping</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester</nameSegment>
+        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_GPT_5_5</nameSegment>
         <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <outputParameters>
+            <assignToReference>PromptOutputJSON</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Execute_Prompt_Template_With_File</name>
-        <label>Execute Prompt Template With File</label>
+        <name>Execute_GPT_5_5_Prompt_Template_With_File</name>
+        <label>Execute GPT 5.5 Prompt Template With File</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File</actionName>
+        <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File_GPT_5_5</actionName>
         <actionType>generatePromptResponse</actionType>
         <connector>
-            <targetReference>Assign_Prompt_Template_With_File_Output_To_Variable</targetReference>
+            <targetReference>Show_Results</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -56,9 +125,78 @@
                 <elementReference>Get_File</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File</nameSegment>
+        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File_GPT_5_5</nameSegment>
         <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <outputParameters>
+            <assignToReference>PromptOutputJSON</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Execute_Sonnet_4_6_Prompt_Template</name>
+        <label>Execute Sonnet 4.6 Prompt Template</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_Sonnet_4_6</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Show_Results</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:Instructions</name>
+            <value>
+                <elementReference>Instructions</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Schema_Mapping</name>
+            <value>
+                <elementReference>Get_Schema_Mapping</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_Sonnet_4_6</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>PromptOutputJSON</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Execute_Sonnet_4_6_Prompt_Template_With_File</name>
+        <label>Execute Sonnet 4.6 Prompt Template With File</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File_Sonnet_4_6</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Show_Results</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:Instructions</name>
+            <value>
+                <elementReference>Instructions</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:File</name>
+            <value>
+                <elementReference>Get_File</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Schema_Mapping</name>
+            <value>
+                <elementReference>Get_Schema_Mapping</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>agentforce1__Lightweight_Agentforce_Record_Builder_Tester_With_File_Sonnet_4_6</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>PromptOutputJSON</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
     </actionCalls>
     <actionCalls>
         <name>Upsert_Prompt_Template_Response_JSON</name>
@@ -87,7 +225,7 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>65.0</apiVersion>
+    <apiVersion>66.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_ContentDocumentIds</name>
@@ -106,37 +244,37 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Prompt_Template_Output_To_Variable</name>
-        <label>Assign Prompt Template Output To Variable</label>
+        <description>Purely added for my OCD so everything lines up nicely in the viewer</description>
+        <name>Assignement_OCD</name>
+        <label>OCD</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>PromptOutputJSON</assignToReference>
+            <assignToReference>OCD</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Execute_Prompt_Template.promptResponse</elementReference>
+                <stringValue>&apos;OCD&apos;</stringValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>scr_Prompt_Response</targetReference>
+            <targetReference>Select_AI_Model_Prompt_Template</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Assign_Prompt_Template_With_File_Output_To_Variable</name>
-        <label>Assign Prompt Template With File Output To Variable</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>PromptOutputJSON</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Execute_Prompt_Template_With_File.promptResponse</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>scr_Prompt_Response</targetReference>
-        </connector>
-    </assignments>
+    <choices>
+        <name>AI_Claude_Sonnet_4_6</name>
+        <choiceText>Claude Sonnet 4.6</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>AI_Google_Gemini_Pro_2_5</name>
+        <choiceText>Google Gemini Pro 2.5</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>AI_GPT_5_5</name>
+        <choiceText>GPT 5.5</choiceText>
+        <dataType>String</dataType>
+    </choices>
     <customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
@@ -174,7 +312,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Execute_Prompt_Template</targetReference>
+            <targetReference>Assignement_OCD</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -189,6 +327,111 @@
             </conditions>
             <connector>
                 <targetReference>Get_File</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Select_AI_Model_Prompt_Template</name>
+        <label>Select AI Model Prompt Template</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Execute_Google_Gemini_Pro_2_5_Prompt_Template</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Google Gemini 2.5</defaultConnectorLabel>
+        <rules>
+            <name>MDL_NF_GPT_5_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AI_Model.selectedChoiceLabels</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>GPT 5.5</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Execute_GPT_5_5_Prompt_Template</targetReference>
+            </connector>
+            <label>GPT 5.5</label>
+        </rules>
+        <rules>
+            <name>MDL_NF_Claude_Sonnet_4_6</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AI_Model.selectedChoiceLabels</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Claude Sonnet 4.6</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Execute_Sonnet_4_6_Prompt_Template</targetReference>
+            </connector>
+            <label>Claude Sonnet 4.6</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Select_AI_Model_Prompt_Template_With_File</name>
+        <label>Select AI Model Prompt Template With File</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Execute_Google_Gemini_Pro_2_5_Prompt_Template_With_File</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Google Gemini Pro 2.5</defaultConnectorLabel>
+        <rules>
+            <name>MDL_GPT_5_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AI_Model.selectedChoiceLabels</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>GPT 5.5</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Execute_GPT_5_5_Prompt_Template_With_File</targetReference>
+            </connector>
+            <label>GPT 5.5</label>
+        </rules>
+        <rules>
+            <name>MDL_Claude_Sonnet_4_6</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AI_Model.selectedChoiceLabels</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Claude Sonnet 4.6</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Execute_Sonnet_4_6_Prompt_Template_With_File</targetReference>
+            </connector>
+            <label>Claude Sonnet 4.6</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Show_Results</name>
+        <label>Show Results</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Upsert_Prompt_Template_Response_JSON</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>show_res_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Output_Responses</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>scr_Prompt_Response</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -223,7 +466,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Execute_Prompt_Template_With_File</targetReference>
+            <targetReference>Select_AI_Model_Prompt_Template_With_File</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -299,6 +542,19 @@
         <connector>
             <targetReference>Assign_ContentDocumentIds</targetReference>
         </connector>
+        <fields>
+            <name>Text_Selected_AI_Model</name>
+            <fieldText>&lt;p&gt;Selected AI Model: {!AI_Model.selectedChoiceLabels}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
         <fields>
             <name>Instructions</name>
             <fieldText>Instructions</fieldText>
@@ -495,7 +751,7 @@
     </screens>
     <screens>
         <name>scr_Welcome</name>
-        <label>Lightweight - Agentforce Record Builder</label>
+        <label>Configuration Screen</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>true</allowBack>
@@ -506,8 +762,103 @@
         </connector>
         <fields>
             <name>txt_Welcome</name>
-            <fieldText>&lt;p&gt;Welcome to the testing tool. On the next page you can input your instructions and optionally upload an image to test the record creation and or updates based on your schema mapping.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You are testing against schema mapping: &lt;strong&gt;{!Get_Schema_Mapping.Name}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Welcome to the testing tool. On the next page you can input your instructions and optionally upload an image to test the record creation and or updates based on your schema mapping.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Schema_Mapping_Lookup</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>agentforce1__Schema_Mapping__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Schema Mapping</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>agentforce1__Mapped_sObject__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>Get_Schema_Mapping.Id</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>AI_Model</name>
+            <choiceReferences>AI_Google_Gemini_Pro_2_5</choiceReferences>
+            <choiceReferences>AI_GPT_5_5</choiceReferences>
+            <choiceReferences>AI_Claude_Sonnet_4_6</choiceReferences>
+            <defaultValue>
+                <elementReference>AI_Google_Gemini_Pro_2_5</elementReference>
+            </defaultValue>
+            <extensionName>flowruntime:choiceLookup</extensionName>
+            <fieldText>AI Model</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Output_Responses</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <booleanValue>false</booleanValue>
+            </defaultValue>
+            <fieldText>Output Responses</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Check this checkbox if you want to see the debug information between steps.&lt;/p&gt;</helpText>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
             <styleProperties>
                 <verticalAlignment>
                     <stringValue>top</stringValue>
@@ -532,6 +883,13 @@
         <name>ContentDocumentIds</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>OCD</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>

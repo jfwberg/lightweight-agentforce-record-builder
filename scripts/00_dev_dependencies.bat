@@ -9,6 +9,6 @@ REM Install Package - Lightweight - Apex Trigger Util (0.1)
 call sf package install -p "04tP3000001bUo9IAE" -w 30
 call sf org assign permset --name "Lightweight_Apex_Trigger_Util"
 
-REM Install Package - Lightweight - Record Tree (0.1)
-call sf package install -p "04tP3000001bWRlIAM" -w 30
+REM Install Package - Lightweight - Record Tree (0.2)
+call sf package install -p "04tP3000001wItdIAE" -w 30
 call sf org assign permset --name "Lightweight_Record_Tree"
